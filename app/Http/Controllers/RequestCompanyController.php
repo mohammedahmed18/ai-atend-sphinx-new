@@ -15,7 +15,6 @@ class RequestCompanyController extends Controller
      */
     public function index()
     {
-       
     }
 
     /**
@@ -25,7 +24,7 @@ class RequestCompanyController extends Controller
      */
     public function create()
     {
-         return view('Company_request.index');
+        return view('Company_request.index');
     }
 
     /**
@@ -36,12 +35,23 @@ class RequestCompanyController extends Controller
      */
     public function store(Request $req)
     {
+
+        $req->validate([
+            'g-recaptcha-response' => 'required|captcha',
+            'name_en' => 'required',
+            'email' => 'required|unique:companies'
+        ], [
+            'g-recaptcha-response.required' => 'You must check the reCAPTCHA.',
+            'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.'
+        ]);
+
+
         $data = $req->all();
         $company = company::create($data);
-        $id      = []; 
+        $id      = [];
         $id['company_id']      = $company->id;
         $CompaniesRegistrationRequest =  CompaniesRegistrationRequest::create($id);
-        return view('Company_request.success');
+        return redirect('/')->with("msg_successRegister" , "success");
     }
 
     /**

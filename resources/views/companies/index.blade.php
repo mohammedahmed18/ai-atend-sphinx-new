@@ -83,11 +83,19 @@
                                         @else
                                             <td><span class="text-danger">In Active</span></td>
                                         @endif
-                                        <td>{{ $company->plan->name_en }}</td>
+
+                                        <td>
+                                            @if ($company->plan)
+                                                {{ $company->plan->name_en }}
+                                            @endif
+                                        </td>
                                         <td>{{ $company->timezone }}</td>
-                                        <td>{{ $company->user->name_en }}</td>
 
-
+                                        <td>
+                                            @if ($company->user)
+                                                {{ $company->user->name_en }}
+                                            @endif
+                                        </td>
 
                                         <td>
                                             <div class="row row-xs wd-xl-4p">
