@@ -48,36 +48,48 @@
                     <div class="card-body">
                         <h4 class="header-title">Payment Methods</h4>
                       
-                        <form action="{{ route('payment_methods.store')}}" method="post">
+                        <form action="{{ route('payment_details.store')}}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="name" class="col-form-label">Name </label>
-                                <input type="name" name="name" class="form-control" id="name" placeholder="Name ">
+                                <label for="name" class="col-form-label">companies</label>
+                                <select name="company_id" id="" style="width: 100%">
+                                    @foreach ($companies as $company )
+                                        <option value="{{ $company->id }}">{{ $company->name_en }}</option>
+                                    @endforeach
+                                    
+                                </select>
                             </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Details</label>
-                                <input type="name" name="details" class="form-control" id="name_ar" placeholder="Details">
-                            </div>
-
                             
-
                             <div class="form-group">
-                                <label for="name" class="col-form-label">Action</label>
-                                <select name="isActive" id="" >
-                                    <option value="">Select Action</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Not Active</option>
+                                <label for="name" class="col-form-label">Plans</label>
+                                <select name="plan_id" id="" style="width: 100%">
+                                    @foreach ($plans as $plan )
+                                        <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">payment_methods</label>
+                                <select name="paymethod_id" id="" style="width: 100%">
+                                    @foreach ($payment_methods as $payment_method )
+                                        <option value="{{ $payment_method->id }}">{{ $payment_method->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
-
-
-                            <div class="form-group shadow-textarea">
-                                <label for="exampleFormControlTextarea6">Note</label>
-                                <textarea class="form-control z-depth-1" name="note" id="exampleFormControlTextarea6" rows="3" placeholder="Write note Here ..."></textarea>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">pay_date</label>
+                                <input type="date" value="" name="pay_date" class="form-control" id="name" placeholder="pay_date">
                             </div>
-
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">start_date</label>
+                                <input type="date"  name="start_date" class="form-control" id="name" placeholder="start_date">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">end_date</label>
+                                <input type="date"  name="end_date" class="form-control" id="name" placeholder="end_date">
+                            </div>
 
                             <center><button type="submit" class="btn btn-success waves-effect waves-light">Add</button></center>
 
@@ -92,4 +104,4 @@
 
         
     </div> <!-- container -->
-@endsection4r   
+@endsection

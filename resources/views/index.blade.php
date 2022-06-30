@@ -55,7 +55,7 @@
                             <a href="{{route('second', ['auth', 'login'])}}" class="nav-link">Sign In</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('second', ['auth', 'register'])}}" class="nav-link">Sign Up</a>
+                            <a href="{{route('companies_registre.create')}}" class="nav-link">Sign Up</a>
                         </li>
                     </ul>
                     <a class="btn btn-danger navbar-btn ml-2" href=''>

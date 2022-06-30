@@ -31,13 +31,20 @@ class Payment_detailsController extends Controller
      */
     public function create()
     {
-        
+        $payment_methods = payment_methods::all();
+        $companies       = company::all();
+        $plans           = plan::all();
+        return view("payment_details.create", compact('payment_methods', 'companies', 'plans'));
     }
 
     
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $data = $req->all();
+        // dd($data);
+        $data['user_id'] = Auth::id();;
+        $payment_details = payment_details::create($data);
+        return redirect()->route('payment_details.index')->with(['success' => 'تم الحفظ بنجاح']);
     }
 
     /**
@@ -64,7 +71,7 @@ class Payment_detailsController extends Controller
         // dd($payment_details->payment_method->name);
         $plans   = plan::all(); 
         $companies   = company::all(); 
-        $payment_methods   = payment_methods::all(); 
+        $payment_details   = payment_details::all(); 
         return view('payment_details.update', compact('companies', 'plans', 'payment_methods', 'payment_details'));
     }
 

@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::resource('companies_registre', 'RequestCompanyController');
 Auth::routes();
-
 // Dashboard Routes
+
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
-    
+
     Route::resource('alters', 'AlertController');
     Route::resource('companies', 'CompanyController');
     Route::resource('plans', 'PlanController');
