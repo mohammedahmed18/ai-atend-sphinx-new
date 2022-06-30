@@ -15,6 +15,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::resource('alerts_to_companies' , 'AlertsToCompaniesController')->except(['index' , 'show']);
 
 
+    Route::patch('/auth/changepass' , 'AccountSettingsController@changePassword')->name('change_auth_user_password');
+    Route::put('settings/updateAll', 'AccountSettingsController@updateAll')->name('updateAccountSettings');
+    Route::resource('/settings', 'AccountSettingsController', [
+        'only' => ['index', 'update']
+    ]);
+
+
     Route::resource('companies', 'CompanyController');
     Route::resource('plans', 'PlanController');
     Route::resource('payment_methods', 'payment_methodsController');
