@@ -54,6 +54,7 @@
                                     <th>commercial record</th>
                                     <th>tax card</th>
                                     <th>active</th>
+                                    <th>alerts</th>
                                     <th>current plan</th>
                                     <th>timezone</th>
                                     <th>added/updated manually by</th>
@@ -83,7 +84,17 @@
                                         @else
                                             <td><span class="text-danger">In Active</span></td>
                                         @endif
-
+                                        <td>
+                                            <table class="table">
+                                                <tbody>
+                                                    @foreach ($company->alerts as $alert)
+                                                        <tr>
+                                                            <td>{{ $alert->message_en }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
                                         <td>
                                             @if ($company->plan)
                                                 {{ $company->plan->name_en }}

@@ -12,5 +12,7 @@ class Alert extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    
+    public function companies(){
+        return $this->belongsToMany('App\company' , 'alerts_to_companies');
+    }
 }

@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/*\r\nTemplate Name: Ubold - Responsive Bootstrap 4 Admin Dashboard\r\nAuthor: CoderThemes\r\nWebsite: https://coderthemes.com/\r\nContact: support@coderthemes.com\r\nFile: Add New Product\r\n*/\njQuery(document).ready(function () {\n  // Summernote\n  $('#product-description').summernote({\n    height: 180,\n    // set editor height\n    minHeight: null,\n    // set minimum height of editor\n    maxHeight: null,\n    // set maximum height of editor\n    focus: false // set focus to editable area after initializing summernote\n\n  }); // Select2\n\n  $('.select2').select2();\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvcGFnZXMvYWRkLXByb2R1Y3QuaW5pdC5qcz8wODNmIl0sIm5hbWVzIjpbImpRdWVyeSIsImRvY3VtZW50IiwicmVhZHkiLCIkIiwic3VtbWVybm90ZSIsImhlaWdodCIsIm1pbkhlaWdodCIsIm1heEhlaWdodCIsImZvY3VzIiwic2VsZWN0MiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7QUFRQUEsTUFBTSxDQUFDQyxRQUFELENBQU4sQ0FBaUJDLEtBQWpCLENBQXVCLFlBQVU7QUFDN0I7QUFDQUMsR0FBQyxDQUFDLHNCQUFELENBQUQsQ0FBMEJDLFVBQTFCLENBQXFDO0FBQ2pDQyxVQUFNLEVBQUUsR0FEeUI7QUFDSjtBQUM3QkMsYUFBUyxFQUFFLElBRnNCO0FBRUo7QUFDN0JDLGFBQVMsRUFBRSxJQUhzQjtBQUdKO0FBQzdCQyxTQUFLLEVBQUUsS0FKMEIsQ0FJSjs7QUFKSSxHQUFyQyxFQUY2QixDQVM3Qjs7QUFDQUwsR0FBQyxDQUFDLFVBQUQsQ0FBRCxDQUFjTSxPQUFkO0FBQ0gsQ0FYRCIsImZpbGUiOiIuL3Jlc291cmNlcy9qcy9wYWdlcy9hZGQtcHJvZHVjdC5pbml0LmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLypcclxuVGVtcGxhdGUgTmFtZTogVWJvbGQgLSBSZXNwb25zaXZlIEJvb3RzdHJhcCA0IEFkbWluIERhc2hib2FyZFxyXG5BdXRob3I6IENvZGVyVGhlbWVzXHJcbldlYnNpdGU6IGh0dHBzOi8vY29kZXJ0aGVtZXMuY29tL1xyXG5Db250YWN0OiBzdXBwb3J0QGNvZGVydGhlbWVzLmNvbVxyXG5GaWxlOiBBZGQgTmV3IFByb2R1Y3RcclxuKi9cclxuXHJcbmpRdWVyeShkb2N1bWVudCkucmVhZHkoZnVuY3Rpb24oKXtcclxuICAgIC8vIFN1bW1lcm5vdGVcclxuICAgICQoJyNwcm9kdWN0LWRlc2NyaXB0aW9uJykuc3VtbWVybm90ZSh7XHJcbiAgICAgICAgaGVpZ2h0OiAxODAsICAgICAgICAgICAgICAgICAvLyBzZXQgZWRpdG9yIGhlaWdodFxyXG4gICAgICAgIG1pbkhlaWdodDogbnVsbCwgICAgICAgICAgICAgLy8gc2V0IG1pbmltdW0gaGVpZ2h0IG9mIGVkaXRvclxyXG4gICAgICAgIG1heEhlaWdodDogbnVsbCwgICAgICAgICAgICAgLy8gc2V0IG1heGltdW0gaGVpZ2h0IG9mIGVkaXRvclxyXG4gICAgICAgIGZvY3VzOiBmYWxzZSAgICAgICAgICAgICAgICAgLy8gc2V0IGZvY3VzIHRvIGVkaXRhYmxlIGFyZWEgYWZ0ZXIgaW5pdGlhbGl6aW5nIHN1bW1lcm5vdGVcclxuICAgIH0pO1xyXG5cclxuICAgIC8vIFNlbGVjdDJcclxuICAgICQoJy5zZWxlY3QyJykuc2VsZWN0MigpO1xyXG59KTsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/pages/add-product.init.js\n");
+eval("/*\nTemplate Name: Ubold - Responsive Bootstrap 4 Admin Dashboard\nAuthor: CoderThemes\nWebsite: https://coderthemes.com/\nContact: support@coderthemes.com\nFile: Add New Product\n*/\njQuery(document).ready(function () {\n  // Summernote\n  $('#product-description').summernote({\n    height: 180,\n    // set editor height\n    minHeight: null,\n    // set minimum height of editor\n    maxHeight: null,\n    // set maximum height of editor\n    focus: false // set focus to editable area after initializing summernote\n\n  }); // Select2\n\n  $('.select2').select2();\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvcGFnZXMvYWRkLXByb2R1Y3QuaW5pdC5qcz8wODNmIl0sIm5hbWVzIjpbImpRdWVyeSIsImRvY3VtZW50IiwicmVhZHkiLCIkIiwic3VtbWVybm90ZSIsImhlaWdodCIsIm1pbkhlaWdodCIsIm1heEhlaWdodCIsImZvY3VzIiwic2VsZWN0MiJdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7QUFRQUEsTUFBTSxDQUFDQyxRQUFELENBQU4sQ0FBaUJDLEtBQWpCLENBQXVCLFlBQVU7QUFDN0I7QUFDQUMsR0FBQyxDQUFDLHNCQUFELENBQUQsQ0FBMEJDLFVBQTFCLENBQXFDO0FBQ2pDQyxVQUFNLEVBQUUsR0FEeUI7QUFDSjtBQUM3QkMsYUFBUyxFQUFFLElBRnNCO0FBRUo7QUFDN0JDLGFBQVMsRUFBRSxJQUhzQjtBQUdKO0FBQzdCQyxTQUFLLEVBQUUsS0FKMEIsQ0FJSjs7QUFKSSxHQUFyQyxFQUY2QixDQVM3Qjs7QUFDQUwsR0FBQyxDQUFDLFVBQUQsQ0FBRCxDQUFjTSxPQUFkO0FBQ0gsQ0FYRCIsImZpbGUiOiIuL3Jlc291cmNlcy9qcy9wYWdlcy9hZGQtcHJvZHVjdC5pbml0LmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLypcblRlbXBsYXRlIE5hbWU6IFVib2xkIC0gUmVzcG9uc2l2ZSBCb290c3RyYXAgNCBBZG1pbiBEYXNoYm9hcmRcbkF1dGhvcjogQ29kZXJUaGVtZXNcbldlYnNpdGU6IGh0dHBzOi8vY29kZXJ0aGVtZXMuY29tL1xuQ29udGFjdDogc3VwcG9ydEBjb2RlcnRoZW1lcy5jb21cbkZpbGU6IEFkZCBOZXcgUHJvZHVjdFxuKi9cblxualF1ZXJ5KGRvY3VtZW50KS5yZWFkeShmdW5jdGlvbigpe1xuICAgIC8vIFN1bW1lcm5vdGVcbiAgICAkKCcjcHJvZHVjdC1kZXNjcmlwdGlvbicpLnN1bW1lcm5vdGUoe1xuICAgICAgICBoZWlnaHQ6IDE4MCwgICAgICAgICAgICAgICAgIC8vIHNldCBlZGl0b3IgaGVpZ2h0XG4gICAgICAgIG1pbkhlaWdodDogbnVsbCwgICAgICAgICAgICAgLy8gc2V0IG1pbmltdW0gaGVpZ2h0IG9mIGVkaXRvclxuICAgICAgICBtYXhIZWlnaHQ6IG51bGwsICAgICAgICAgICAgIC8vIHNldCBtYXhpbXVtIGhlaWdodCBvZiBlZGl0b3JcbiAgICAgICAgZm9jdXM6IGZhbHNlICAgICAgICAgICAgICAgICAvLyBzZXQgZm9jdXMgdG8gZWRpdGFibGUgYXJlYSBhZnRlciBpbml0aWFsaXppbmcgc3VtbWVybm90ZVxuICAgIH0pO1xuXG4gICAgLy8gU2VsZWN0MlxuICAgICQoJy5zZWxlY3QyJykuc2VsZWN0MigpO1xufSk7Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/pages/add-product.init.js\n");
 
 /***/ }),
 
@@ -522,45 +522,45 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\js\pages\add-product.init.js */"./resources/js/pages/add-product.init.js");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-creative-dark-rtl.scss */"./resources/scss/app-creative-dark-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-creative-dark.scss */"./resources/scss/app-creative-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-creative-rtl.scss */"./resources/scss/app-creative-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-creative.scss */"./resources/scss/app-creative.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-dark-rtl.scss */"./resources/scss/app-dark-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-dark.scss */"./resources/scss/app-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-material-dark-rtl.scss */"./resources/scss/app-material-dark-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-material-dark.scss */"./resources/scss/app-material-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-material-rtl.scss */"./resources/scss/app-material-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-material.scss */"./resources/scss/app-material.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-modern-dark-rtl.scss */"./resources/scss/app-modern-dark-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-modern-dark.scss */"./resources/scss/app-modern-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-modern-rtl.scss */"./resources/scss/app-modern-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-modern.scss */"./resources/scss/app-modern.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-purple-dark-rtl.scss */"./resources/scss/app-purple-dark-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-purple-dark.scss */"./resources/scss/app-purple-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-purple-rtl.scss */"./resources/scss/app-purple-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-purple.scss */"./resources/scss/app-purple.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-rtl.scss */"./resources/scss/app-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-saas-dark-rtl.scss */"./resources/scss/app-saas-dark-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-saas-dark.scss */"./resources/scss/app-saas-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-saas-rtl.scss */"./resources/scss/app-saas-rtl.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app-saas.scss */"./resources/scss/app-saas.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\app.scss */"./resources/scss/app.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-creative-dark.scss */"./resources/scss/bootstrap-creative-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-creative.scss */"./resources/scss/bootstrap-creative.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-dark.scss */"./resources/scss/bootstrap-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-material-dark.scss */"./resources/scss/bootstrap-material-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-material.scss */"./resources/scss/bootstrap-material.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-modern-dark.scss */"./resources/scss/bootstrap-modern-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-modern.scss */"./resources/scss/bootstrap-modern.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-purple-dark.scss */"./resources/scss/bootstrap-purple-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-purple.scss */"./resources/scss/bootstrap-purple.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-saas-dark.scss */"./resources/scss/bootstrap-saas-dark.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap-saas.scss */"./resources/scss/bootstrap-saas.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\bootstrap.scss */"./resources/scss/bootstrap.scss");
-__webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\icons.scss */"./resources/scss/icons.scss");
-module.exports = __webpack_require__(/*! C:\Users\Mohammed\Desktop\ai-attend\resources\scss\landing.scss */"./resources/scss/landing.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\js\pages\add-product.init.js */"./resources/js/pages/add-product.init.js");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-creative-dark-rtl.scss */"./resources/scss/app-creative-dark-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-creative-dark.scss */"./resources/scss/app-creative-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-creative-rtl.scss */"./resources/scss/app-creative-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-creative.scss */"./resources/scss/app-creative.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-dark-rtl.scss */"./resources/scss/app-dark-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-dark.scss */"./resources/scss/app-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-material-dark-rtl.scss */"./resources/scss/app-material-dark-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-material-dark.scss */"./resources/scss/app-material-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-material-rtl.scss */"./resources/scss/app-material-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-material.scss */"./resources/scss/app-material.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-modern-dark-rtl.scss */"./resources/scss/app-modern-dark-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-modern-dark.scss */"./resources/scss/app-modern-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-modern-rtl.scss */"./resources/scss/app-modern-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-modern.scss */"./resources/scss/app-modern.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-purple-dark-rtl.scss */"./resources/scss/app-purple-dark-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-purple-dark.scss */"./resources/scss/app-purple-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-purple-rtl.scss */"./resources/scss/app-purple-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-purple.scss */"./resources/scss/app-purple.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-rtl.scss */"./resources/scss/app-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-saas-dark-rtl.scss */"./resources/scss/app-saas-dark-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-saas-dark.scss */"./resources/scss/app-saas-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-saas-rtl.scss */"./resources/scss/app-saas-rtl.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app-saas.scss */"./resources/scss/app-saas.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\app.scss */"./resources/scss/app.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-creative-dark.scss */"./resources/scss/bootstrap-creative-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-creative.scss */"./resources/scss/bootstrap-creative.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-dark.scss */"./resources/scss/bootstrap-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-material-dark.scss */"./resources/scss/bootstrap-material-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-material.scss */"./resources/scss/bootstrap-material.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-modern-dark.scss */"./resources/scss/bootstrap-modern-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-modern.scss */"./resources/scss/bootstrap-modern.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-purple-dark.scss */"./resources/scss/bootstrap-purple-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-purple.scss */"./resources/scss/bootstrap-purple.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-saas-dark.scss */"./resources/scss/bootstrap-saas-dark.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap-saas.scss */"./resources/scss/bootstrap-saas.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\bootstrap.scss */"./resources/scss/bootstrap.scss");
+__webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\icons.scss */"./resources/scss/icons.scss");
+module.exports = __webpack_require__(/*! D:\projects\ai-attend-sphinx\resources\scss\landing.scss */"./resources/scss/landing.scss");
 
 
 /***/ })

@@ -21,6 +21,14 @@
 
     <!-- Custom  sCss -->
     <link href="{{ asset('assets/css/landing.min.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .nav-link {
+            color: white !important;
+            font-weight: 400 !important;
+            font-size: 1rem !important
+        }
+
+    </style>
 </head>
 
 <body>

@@ -89,10 +89,13 @@
                     <div class="collapse" id="sidebaralerts">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('alters.index') }}">Alerts</a>
+                                <a href="{{ route('alerts.index') }}">Alerts</a>
                             </li>
                             <li>
-                                <a href="{{ route('alters.create') }}">Add new Alerts</a>
+                                <a href="{{ route('alerts.create') }}">create a new Alerts</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('alerts_to_companies.create') }}">send alerts</a>
                             </li>
                         </ul>
                     </div>
@@ -184,7 +187,7 @@
                     </div>
                 </li>
                 {{-- end of paymentdetails --}}
-                
+
 
 
 

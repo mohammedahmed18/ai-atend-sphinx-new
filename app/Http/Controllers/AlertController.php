@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alert;
+use App\company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,7 @@ class AlertController extends Controller
     {
         //
         $alerts = Alert::all();
-        return view("Alerts.index",compact('alerts'));
+        return view("alerts.index",compact('alerts'));
     }
 
     /**
@@ -36,7 +37,7 @@ class AlertController extends Controller
      */
     public function create()
     {
-        return view('Alerts.create');
+        return view('alerts.create');
     }
 
     /**
@@ -50,7 +51,7 @@ class AlertController extends Controller
         $data = $req->all();
         $data['user_id'] = $user_id = Auth::id();
         $alert = Alert::create($data);
-        return redirect()->route('alters.index')->with(['success' => 'تم الحفظ بنجاح']);
+        return redirect()->route('alerts.index')->with(['success' => 'تم الحفظ بنجاح']);
     }
 
     /**
@@ -72,8 +73,10 @@ class AlertController extends Controller
      */
     public function edit($id)
     {
-        $alerts = Alert::FindOrFail($id);
-        return view('alerts.update', compact('alerts'));
+        $alert = Alert::FindOrFail($id);
+        $companies = Company::where('isActive' , 1)->get();
+
+        return view('alerts.update', compact('alert' , 'companies'));
     }
 
     /**
@@ -86,13 +89,14 @@ class AlertController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $alerts   = Alert::findOrFail($id);
+            $alert   = Alert::findOrFail($id);
             $user_id  = Auth::id();
             $request['user_id'] = $user_id;
-            $alerts->update($request->all());
-            return redirect()->route('alters.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
+            $alert->update($request->all());
+            $alert->companies()->sync($request->companies);
+            return redirect()->route('alerts.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
         } catch (\Exception $ex) {
-            return redirect()->route('alters.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
+            return redirect()->route('alerts.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
         }
     }
 
@@ -107,10 +111,10 @@ class AlertController extends Controller
         try{
             $alerts = Alert::findOrFail($id);
             $alerts->delete();
-            return redirect()->route('alters.index')->with(['success' => 'Delete this Alert Success']);
+            return redirect()->route('alerts.index')->with(['success' => 'Delete this Alert Success']);
 
         }catch(\Exception $ex){
-            return redirect()->route('alters.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
+            return redirect()->route('alerts.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
 
         }
     }

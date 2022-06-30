@@ -400,7 +400,7 @@
                     </a>
 
                     <!-- item-->
-                    <a href="{{ route('alters.create') }}" class="dropdown-item">
+                    <a href="{{ route('alerts.create') }}" class="dropdown-item">
                         <i class="fa fa-bell mr-1"></i>
                         <span>New Alerts</span>
                     </a>

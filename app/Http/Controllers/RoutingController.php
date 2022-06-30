@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 
 class RoutingController extends Controller
@@ -20,19 +21,27 @@ class RoutingController extends Controller
      */
     public function root($first)
     {
-        if ($first != 'assets')
-            return view($first);
-        return view('index');
+        try {
+            if ($first != 'assets')
+                return view($first);
+            return view('index');
+        } catch (Exception $e) {
+            abort(404);
+        }
     }
 
     /**
      * second level route
      */
     public function secondLevel($first, $second)
-    {        
-        if ($first != 'assets')
-            return view($first.'.'.$second);
-        return view('index');
+    {
+        try {
+            if ($first != 'assets')
+                return view($first . '.' . $second);
+            return view('index');
+        } catch (Exception $e) {
+            abort(404);
+        }
     }
 
     /**
@@ -40,8 +49,13 @@ class RoutingController extends Controller
      */
     public function thirdLevel($first, $second, $third)
     {
-        if ($first != 'assets')
-            return view($first.'.'.$second.'.'.$third);
-        return view('index');
+        try {
+
+            if ($first != 'assets')
+                return view($first . '.' . $second . '.' . $third);
+            return view('index');
+        } catch (Exception $e) {
+            abort(404);
+        }
     }
 }

@@ -1,17 +1,28 @@
 @extends('layouts.vertical', ['title' => 'Form Components'])
+@section('css')
+    <!-- Plugins css -->
+    <link href="{{ asset('assets/libs/multiselect/multiselect.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/selectize/selectize.min.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .selectize-dropdown-header {
+            display: none !important
+        }
+
+    </style>
+@endsection
 
 @section('content')
 
-        @if(session()->has('message'))
-        {{dd('vbnm')}}
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
-            </div>
-        @endif
+    @if (session()->has('message'))
+        {{ dd('vbnm') }}
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
 
     <!-- Start Content-->
     <div class="container-fluid">
-        
+
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -23,11 +34,11 @@
                             <li class="breadcrumb-item active">Elements</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Edit job</h4>
+                    <h4 class="page-title">Edit Alert</h4>
                 </div>
             </div>
-        </div>     
-        <!-- end page title --> 
+        </div>
+        <!-- end page title -->
 
 
 
@@ -38,75 +49,79 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">alerts</h4>
-                      
-                        <form action="{{ route('alters.update', $alerts->id)}}" method="post">
+
+                        <form action="{{ route('alerts.update', $alert->id) }}" method="post">
                             {{ csrf_field() }}
-							{{ method_field('PATCH') }}
+                            {{ method_field('PATCH') }}
 
                             <div class="form-group">
                                 <label for="name" class="col-form-label">message en </label>
-                                <input type="name" name="message_en" value="{{ $alerts->message_en }}" class="form-control" id="name" placeholder="message en...">
+                                <input type="name" name="message_en" value="{{ $alert->message_en }}" class="form-control"
+                                    id="name" placeholder="message en...">
                             </div>
 
-                            
+
                             <div class="form-group">
                                 <label for="name" class="col-form-label">message ar </label>
-                                <input type="name" name="message_ar" value="{{ $alerts->message_ar }}" class="form-control" id="name" placeholder="message ar...">
+                                <input type="name" name="message_ar" value="{{ $alert->message_ar }}" class="form-control"
+                                    id="name" placeholder="message ar...">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="name" class="col-form-label">start date </label>
-                                <input type="date" name="start_date" value="{{ $alerts->start_date }}" class="form-control" id="name" placeholder="start date...">
+                                <input type="date" name="start_date" value="{{ $alert->start_date }}" class="form-control"
+                                    id="name" placeholder="start date...">
                             </div>
-                            
-                            
+
+
                             <div class="form-group">
                                 <label for="name" class="col-form-label">start date </label>
-                                <input type="date" name="end_date" value="{{ $alerts->end_date }}" class="form-control" id="name" placeholder="start date...">
+                                <input type="date" name="end_date" value="{{ $alert->end_date }}" class="form-control"
+                                    id="name" placeholder="start date...">
                             </div>
-                            
+
                             <div class="form-group">
-                                <select name="type" id="" style="width: 200px">
-                                    {{--  <option value="">{{ $alerts->type }}</option>  --}}
-                                    @if ($alerts->type == "info")
-                                        <option value="1">info</option>
-                                    @elseif ($alerts->type == "success")
-                                        <option value="2">success</option>
-                                    @elseif ($alerts->type == "warning")
-                                        <option value="3">warning</option>
-                                    @elseif ($alerts->type == "error")
-                                        <option value="4">error</option>
-                                    @endif
-                                    <option value="1">info</option>
-                                    <option value="2">success</option>
-                                    <option value="3">warning</option>
-                                    <option value="4">error</option>
+                                <label>alert type</label>
+                                <select name="type" class="form-control">
+                                    <option @if ($alert->type == 'info') selected @endif value="1">info</option>
+                                    <option @if ($alert->type == 'success') selected @endif value="2">success</option>
+                                    <option @if ($alert->type == 'warning') selected @endif value="3">warning</option>
+                                    <option @if ($alert->type == 'error') selected @endif value="4">error</option>
                                 </select>
                             </div>
 
-                            
+
                             <div class="form-group">
-                                <select name="is_activate" id="" style="width: 200px">
-                                    {{--  <option value="">select Action</option>  --}}
-                                    @if ($alerts->is_activate)
-                                        <option value="1">Active</option>
-                                    @else
-                                        <option value="0">inactive</option>
-                                    @endif
-                                    <option value="1">Active</option>
-                                    <option value="0">inactive</option>
+                                <label>alert status</label>
+
+                                <select name="is_activate" class="form-control">
+                                    <option @if ($alert->is_activate) selected @endif value="1">Active</option>
+                                    <option @if (!$alert->is_activate) selected @endif value="0">inactive</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group shadow-textarea">
                                 <label for="exampleFormControlTextarea6">Note</label>
-                                <textarea class="form-control z-depth-1" name="notes" id="exampleFormControlTextarea6" rows="3" placeholder="Write note Here ...">{{ $alerts->note }}</textarea>
+                                <textarea class="form-control z-depth-1" name="notes" id="exampleFormControlTextarea6"
+                                    rows="3" placeholder="Write note Here ...">{{ $alert->note }}</textarea>
                             </div>
-                            
 
-                            
 
-                            <center> <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button> </center>
+                            <div class="form-group">
+                                <label>Companies</label>
+                                <select id="selectize-maximum" name="companies[]">
+                                    <option disabled>select companies you want to send alert to</option>
+                                    @foreach ($companies as $company)
+                                        <option value="{{ $company->id }}">{{ $company->name_en }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                            <center> <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
+                            </center>
 
                         </form>
 
@@ -117,6 +132,28 @@
         <!-- end row -->
 
 
-        
+
     </div> <!-- container -->
+@endsection
+@section('script')
+    <!-- Plugins js-->
+    <script src="{{ asset('assets/libs/selectize/selectize.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/devbridge-autocomplete/devbridge-autocomplete.min.js') }}"></script>
+
+
+    <script>
+        var alerts_companies = @json($alert->companies);
+        const items = []
+        alerts_companies.forEach(c => {
+            items.push(c.id)
+        });
+
+        $('#selectize-maximum').selectize({
+            items,
+            maxItems: 10
+        });
+
+    </script>
 @endsection

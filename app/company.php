@@ -25,4 +25,7 @@ class company extends Model
     public function plan(){
         return $this->belongsTo(plan::class, 'current_plan_id');
     }
+    public function alerts(){
+        return $this->belongsToMany('App\Alert' , 'alerts_to_companies');
+    }
 }

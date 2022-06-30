@@ -11,7 +11,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
 
-    Route::resource('alters', 'AlertController');
+    Route::resource('alerts', 'AlertController');
+    Route::resource('alerts_to_companies' , 'AlertsToCompaniesController')->except(['index' , 'show']);
+
+
     Route::resource('companies', 'CompanyController');
     Route::resource('plans', 'PlanController');
     Route::resource('payment_methods', 'payment_methodsController');
