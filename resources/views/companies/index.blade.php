@@ -58,6 +58,7 @@
                                     <th>current plan</th>
                                     <th>timezone</th>
                                     <th>added/updated manually by</th>
+                                    <th>Registration Num</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -79,6 +80,7 @@
                                         <td>{{ $company->lat }}</td>
                                         <td>{{ $company->commercial_record }}</td>
                                         <td>{{ $company->tax_card }}</td>
+                                        
                                         @if ($company->isActive)
                                             <td><span class="text-success">Active</span></td>
                                         @else
@@ -107,7 +109,7 @@
                                                 {{ $company->user->name_en }}
                                             @endif
                                         </td>
-
+                                        <td>{{ $company->registration_num }}</td>
                                         <td>
                                             <div class="row row-xs wd-xl-4p">
                                                 <a href="{{ route('companies.edit', $company->id) }}"

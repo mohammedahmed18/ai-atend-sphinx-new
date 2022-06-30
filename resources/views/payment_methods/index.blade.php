@@ -55,7 +55,13 @@
                                     <td>{{ $payment_method->name }}</td>
                                     <td>{{ $payment_method->details }}</td>
                                     <td>{{ $payment_method->user->name_en }}</td>
-                                    <td>{{ $payment_method->isActive === 1 ? "Active" : "Inactive" }}</td>
+                                    <td>
+                                            @if ($payment_method->isActive === 1)
+                                                <span class="badge badge-success">Active</span>
+                                            @else
+                                                <span class="badge badge-danger">Not Active</span>
+                                            @endif
+                                        </td>
                                     <td>{{ $payment_method->note }}</td>
                                     <td> 
                                         <div class="row row-xs wd-xl-4p">

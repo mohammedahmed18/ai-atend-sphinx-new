@@ -171,7 +171,7 @@
                 {{-- start of paymentdetails --}}
                 <li>
                     <a href="#sidebarpaymentdetails" data-toggle="collapse">
-                        <i data-feather="package" class="far plus-square"></i>
+                        <i class="fa fa-money" aria-hidden="true"></i>
                         <span> Payment Details </span>
                         <span class="menu-arrow"></span>
                     </a>

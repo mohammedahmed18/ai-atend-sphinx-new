@@ -45,12 +45,13 @@
 
                             
                             
+                            
                             <div class="form-group">
                                 <label for="name" class="col-form-label">companies</label>
-                                <select name="company_id" id="" style="width: 100%">
-                                    <option value="{{ $payment_details->company_id }}">{{ $payment_details->company->name_en }}</option>
+                                <select name="company_id" class="form-control" id="" style="width: 100%">
+                                    {{-- <option value="{{ $payment_details->company_id }}">{{ $payment_details->company->name_en }}</option> --}}
                                     @foreach ($companies as $company )
-                                        <option value="{{ $company->id }}">{{ $company->name_en }}</option>
+                                        <option {{ $payment_details->company->id == $company->id ?'selected' : '' }}  value="{{ $company->id }}">{{ $company->name_en }}</option>
                                     @endforeach
                                     
                                 </select>
@@ -58,20 +59,20 @@
                             
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Plans</label>
-                                <select name="plan_id" id="" style="width: 100%">
-                                    <option value="{{ $payment_details->paymethod_id }}">{{ $payment_details->plan->name_en }}</option>
+                                <select name="plan_id" class="form-control" id="" style="width: 100%">
+                                    {{-- <option value="{{ $payment_details->paymethod_id }}">{{ $payment_details->plan->name_en }}</option> --}}
                                     @foreach ($plans as $plan )
-                                        <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                        <option  {{  $payment_details->plan->id == $plan->id ? 'selected' : '' }} value="{{ $plan->id }}">{{ $plan->name_en }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             
                             <div class="form-group">
                                 <label for="name" class="col-form-label">payment_methods</label>
-                                <select name="paymethod_id" id="" style="width: 100%">
-                                    <option value="{{ $payment_details->paymethod_id }}">{{ $payment_details->payment_method->name }}</option>
+                                <select name="paymethod_id" id="" class="form-control" style="width: 100%">
+                                    {{-- <option value="{{ $payment_details->paymethod_id }}">{{ $payment_details->payment_method->name }}</option> --}}
                                     @foreach ($payment_methods as $payment_method )
-                                        <option value="{{ $payment_method->id }}">{{ $payment_method->name }}</option>
+                                        <option {{ $payment_details->payment_method->id == $payment_method->id ? 'selected' : '' }} value="{{ $payment_method->id }}">{{ $payment_method->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
