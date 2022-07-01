@@ -62,14 +62,9 @@
                             </div>
 
                             <div class="form-group">
-                                <select name="isActive" id="" class="form-control" style="width: 200px">
-                                    @if ($payment_method->isActive)
-                                        <option value="1">Active</option>
-                                    @else
-                                        <option value="0">inactive</option>
-                                    @endif
-                                    <option value="1">Active</option>
-                                    <option value="0">inactive</option>
+                                <select name="isActive" id="" class="form-control" style="width: 100%">
+                                     <option @if ($payment_method->isActive) selected @endif value="1">Active</option>
+                                    <option @if (!$payment_method->isActive) selected @endif value="0">inactive</option>
                                 </select>
                             </div>
 

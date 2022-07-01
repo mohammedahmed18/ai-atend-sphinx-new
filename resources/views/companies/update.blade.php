@@ -114,11 +114,9 @@
 
                             <div class="form-group my-2">
                                 <label>Active</label>
-                                <select name="isActive" id="" class="form-control">
-                                    <option value="{{ $company->isActive === 1 ? 1 : 0 }}">
-                                        {{ $company->isActive === 1 ? 'Active' : 'Inactive' }}</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
+                                <select name="isActive" id="" class="form-control" style="width: 100%">
+                                    <option @if ($company->isActive) selected @endif value="1">Active</option>
+                                    <option @if (!$company->isActive) selected @endif value="0">inactive</option>
                                 </select>
                             </div>
 
@@ -128,10 +126,12 @@
                                 <select name="current_plan_id" id="" class="form-control">
 
                                     @foreach ($plans as $plan)
-                                        @if ($company->plan && $company->plan == $plan)
-                                            <option selected value="{{ $plan->id }}">{{ $plan->name_en }}</option>
-                                        @else
-                                            <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                        @if ($plan->activate)
+                                            @if ($company->plan && $company->plan == $plan)
+                                                <option selected value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                            @else
+                                                <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </select>

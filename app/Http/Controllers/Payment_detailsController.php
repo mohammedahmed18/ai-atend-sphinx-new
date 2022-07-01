@@ -71,7 +71,7 @@ class Payment_detailsController extends Controller
         // dd($payment_details->payment_method->name);
         $plans   = plan::all(); 
         $companies   = company::all(); 
-        $payment_details   = payment_details::all(); 
+        $payment_methods   = payment_methods::all(); 
         return view('payment_details.update', compact('companies', 'plans', 'payment_methods', 'payment_details'));
     }
 

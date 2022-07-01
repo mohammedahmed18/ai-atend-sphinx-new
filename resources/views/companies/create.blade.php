@@ -99,18 +99,28 @@
                                 </ul>
                             </div>
                             <br>
-                            <select name="isActive" id="">
-                                <option value="">Select The Active</option>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Action</label>
+                                <select name="isActive" id=""  style="width: 100%" class="form-control">
+                                    <option value="">Select The Active</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">plans</label>
+                                <select name="current_plan_id" id="" style="width: 100%" class="form-control">
+                                    <option value="">Select The Plans</option>
+                                    @foreach ($plans as $plan )
+                                        @if ($plan->activate)
+                                            <option value="{{ $plan->id }}">{{ $plan->name_en }}</option> 
+                                        @endif
+                                    @endforeach
+                                </select>    
+                            </div>
                            
-                            <select name="current_plan_id" id="">
-                                <option value="">Select The Plans</option>
-                                @foreach ($plans as $plan )
-                                    <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
-                                @endforeach
-                            </select>
+                            
                             
 
 

@@ -56,7 +56,9 @@
                                 <label for="name" class="col-form-label">companies</label>
                                 <select name="company_id" id="" class="form-control" style="width: 100%">
                                     @foreach ($companies as $company)
-                                        <option value="{{ $company->id }}">{{ $company->name_en }}</option>
+                                        @if ($company->isActive)
+                                            <option value="{{ $company->id }}">{{ $company->name_en }}</option>
+                                        @endif
                                     @endforeach
 
                                 </select>
@@ -66,7 +68,9 @@
                                 <label for="name" class="col-form-label">Plans</label>
                                 <select name="plan_id" id="" style="width: 100%" class="form-control">
                                     @foreach ($plans as $plan)
-                                        <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                        @if ($plan->activate)
+                                            <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>                                                
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -75,7 +79,9 @@
                                 <label for="name" class="col-form-label">payment_methods</label>
                                 <select name="paymethod_id" id="" style="width: 100%" class="form-control">
                                     @foreach ($payment_methods as $payment_method)
-                                        <option value="{{ $payment_method->id }}">{{ $payment_method->name }}</option>
+                                    @if ($payment_method->isActive)
+                                        <option value="{{ $payment_method->id }}">{{ $payment_method->name }}</option> 
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
