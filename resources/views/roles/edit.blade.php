@@ -1,7 +1,8 @@
 @extends('layouts.vertical', ['title' => 'Form Components'])
 @section('css')
     <!-- Plugins css -->
-    <link href="{{ asset('assets/libs/mohithg-switchery/mohithg-switchery.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/mohithg-switchery/mohithg-switchery.min.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('assets/libs/multiselect/multiselect.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/selectize/selectize.min.css') }}" rel="stylesheet" type="text/css" />
@@ -53,7 +54,8 @@
                             <div class="form-group">
                                 <label for="name-input" class="col-form-label">Name *</label>
                                 <input type="text" name="name" class="form-control" id="name-input" placeholder="Name"
-                                    value="{{ $role->name }}" required>
+                                    value="{{ $role->name }}" {{ $role->name == 'super_admin' ? 'disabled' : '' }}
+                                    required>
                             </div>
 
                             <div class="form-group">
@@ -72,7 +74,8 @@
                                             @foreach ($collection as $p)
                                                 <div class="">
                                                     <div class="mb-2 checkbox checkbox-primary">
-                                                        <input id="{{ $p->id }}" type="checkbox"
+                                                        <input {{ $role->name == 'super_admin' ? 'disabled' : '' }}
+                                                            id="{{ $p->id }}" type="checkbox"
                                                             {{ $role->hasPermission($p->name) ? 'checked' : '' }}
                                                             value="{{ $p->id }}" name="permissions[]">
                                                         <label for="{{ $p->id }}">{{ $p->name }}</label>
