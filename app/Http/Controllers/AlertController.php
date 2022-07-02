@@ -6,6 +6,7 @@ use App\Alert;
 use App\company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AlertController extends Controller
 {
@@ -48,6 +49,21 @@ class AlertController extends Controller
      */
     public function store(Request $req)
     {
+
+        $validator = Validator::make(
+            $req->all(),
+            [
+                'message_en' => 'required',
+                "message_ar" => 'required',
+                'type' => 'required',
+                'is_activate' => 'required'
+            ]
+        );
+        if ($validator->fails()) {
+            $err_msg = $validator->errors()->first();
+            return back()->with('error', $err_msg)->withInput();
+        }
+
         $data = $req->all();
         $data['user_id'] = $user_id = Auth::id();
         $alert = Alert::create($data);
@@ -90,6 +106,20 @@ class AlertController extends Controller
     {
         try {
             $alert   = Alert::findOrFail($id);
+
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'message_en' => 'required',
+                    "message_ar" => 'required',
+                    'type' => 'required',
+                    'is_activate' => 'required'
+                ]
+            );
+            if ($validator->fails()) {
+                $err_msg = $validator->errors()->first();
+                return back()->with('error', $err_msg)->withInput();
+            }
             $user_id  = Auth::id();
             $request['user_id'] = $user_id;
             $alert->update($request->all());

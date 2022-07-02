@@ -69,7 +69,7 @@
 
                             <div class="form-group">
                                 <label for="name" class="col-form-label">cost</label>
-                                <input type="name" name="coast" class="form-control" id="coast" placeholder="coast">
+                                <input type="name" name="cost" class="form-control" id="coast" placeholder="cost">
                             </div>
 
                             <div class="form-group">

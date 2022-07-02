@@ -36,7 +36,7 @@ class RolesController extends Controller
     public function create()
     {
         $permission_collections = PermissionCollection::orderBy('label')->get();
-        return view('roles.add' , compact('permission_collections'));
+        return view('roles.add', compact('permission_collections'));
     }
 
     /**
@@ -48,19 +48,20 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         try {
-          $validator = Validator::make($request->all() , 
-            [
-                'name' => 'required',
-                "permissions" => "required",
-            ],
-            [
-                'name.required' => "يجب ادخال اسم الدور" , 
-                "permissions.required" => 'يجب اختيار على الاقل تصريح واحد'
-            ]
-        );
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name' => 'required|unique:roles',
+                    "permissions" => "required",
+                ],
+                [
+                    'name.required' => "يجب ادخال اسم الدور",
+                    "permissions.required" => 'يجب اختيار على الاقل تصريح واحد'
+                ]
+            );
             if ($validator->fails()) {
                 $err_msg = $validator->errors()->first();
-                return back()->with('error' , $err_msg)->withInput($request->all());
+                return back()->with('error', $err_msg)->withInput();
             }
 
 
@@ -70,7 +71,7 @@ class RolesController extends Controller
             // assign permissions to the role
             $permissions = $request->permissions;
             $role->attachPermissions($permissions);
-            return redirect()->route('roles.create')->with('success', 'تم الحفظ بنجاح');
+            return redirect()->route('roles.index')->with('success', 'تم الحفظ بنجاح');
         } catch (\Exception $exp) {
             return back()->with('error', 'هناك خطأ برجاء المحاولة ثانيا');
         }
@@ -98,7 +99,7 @@ class RolesController extends Controller
         //
         $role = Role::FindOrFail($id);
         $permission_collections = PermissionCollection::orderBy('label')->get();
-        return view('roles.edit',compact('role' , 'permission_collections'));
+        return view('roles.edit', compact('role', 'permission_collections'));
     }
 
     /**
@@ -110,17 +111,32 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{    
+        try {
             $role = Role::findOrFail($id);
 
-             //update in db
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name' => 'required|unique:roles,name,' . $role->id,
+                    "permissions" => "required",
+                ],
+                [
+                    'name.required' => "يجب ادخال اسم الدور",
+                    "permissions.required" => 'يجب اختيار على الاقل تصريح واحد'
+                ]
+            );
+            if ($validator->fails()) {
+                $err_msg = $validator->errors()->first();
+                return back()->with('error', $err_msg)->withInput();
+            }
+
+            //update in db
             $role->update($request->except('permissions'));
-            if(!$role->name == 'super_admin'){
-            $role->syncPermissions($request->permissions);
+            if (!$role->name == 'super_admin') {
+                $role->syncPermissions($request->permissions);
             }
             return redirect()->route('roles.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
-
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return redirect()->route('roles.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
         }
     }
@@ -133,26 +149,26 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        try{    
+        try {
             $role = Role::findOrFail($id);
-            if($role->users->count() != 0){
-                return back()->with('error' , 'لا يمكن مسح هذا الدور لان هناك موظفين عليه');
+            if ($role->users->count() != 0) {
+                return back()->with('error', 'لا يمكن مسح هذا الدور لان هناك موظفين عليه');
             }
 
-        $role->permissions()->sync([]); // Delete relationship data
-        $role->delete();
+            $role->permissions()->sync([]); // Delete relationship data
+            $role->delete();
 
-        return redirect()->route('roles.index')->with(['success' => 'تم حذف الدور بنجاح']);
-
-        }catch(\Exception $ex){
+            return redirect()->route('roles.index')->with(['success' => 'تم حذف الدور بنجاح']);
+        } catch (\Exception $ex) {
             return redirect()->route('roles.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
         }
     }
 
-    public function permessions_data(){
+    public function permessions_data()
+    {
         $permissions_data = [];
 
-        $permissions = Permission::orderBy('name' , 'desc')->get();
+        $permissions = Permission::orderBy('name', 'desc')->get();
 
         $current_name = null;
         $collection = [];

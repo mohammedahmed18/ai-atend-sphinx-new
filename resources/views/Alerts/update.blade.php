@@ -54,34 +54,43 @@
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">message en </label>
-                                <input type="name" name="message_en" value="{{ $alert->message_en }}" class="form-control"
-                                    id="name" placeholder="message en...">
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">message en <span
+                                            class="text-danger">*</span></label>
+                                    <input type="name" name="message_en" value="{{ $alert->message_en }}"
+                                        class="form-control" id="name" placeholder="message en...">
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">message ar <span
+                                            class="text-danger">*</span></label>
+                                    <input type="name" name="message_ar" value="{{ $alert->message_ar }}"
+                                        class="form-control" id="name" placeholder="message ar...">
+                                </div>
                             </div>
 
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">start date <span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" name="start_date" value="{{ $alert->start_date }}"
+                                        class="form-control" id="name" placeholder="start date...">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">message ar </label>
-                                <input type="name" name="message_ar" value="{{ $alert->message_ar }}" class="form-control"
-                                    id="name" placeholder="message ar...">
+
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">end date <span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" name="end_date" value="{{ $alert->end_date }}"
+                                        class="form-control" id="name" placeholder="start date...">
+                                </div>
+
                             </div>
-
                             <div class="form-group">
-                                <label for="name" class="col-form-label">start date </label>
-                                <input type="date" name="start_date" value="{{ $alert->start_date }}" class="form-control"
-                                    id="name" placeholder="start date...">
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">start date </label>
-                                <input type="date" name="end_date" value="{{ $alert->end_date }}" class="form-control"
-                                    id="name" placeholder="start date...">
-                            </div>
-
-                            <div class="form-group">
-                                <label>alert type</label>
+                                <label>alert type <span class="text-danger">*</span></label>
                                 <select name="type" class="form-control">
                                     <option @if ($alert->type == 'info') selected @endif value="1">info</option>
                                     <option @if ($alert->type == 'success') selected @endif value="2">success</option>
@@ -92,7 +101,7 @@
 
 
                             <div class="form-group">
-                                <label>alert status</label>
+                                <label>alert status <span class="text-danger">*</span></label>
 
                                 <select name="is_activate" class="form-control">
                                     <option @if ($alert->is_activate) selected @endif value="1">Active</option>

@@ -47,12 +47,25 @@ class CompanyController extends Controller
     public function store(Request $req)
     {
 
-
-
-        $validator = Validator::make($req->all(), [
-            'email' => 'required|unique:companies',
-            'name_en' => 'required|unique:companies',
-            'name_ar' => 'required|unique:companies',
+        $validator = Validator::make($req->all(),  [
+            "name_en" => "required|unique:companies",
+            "name_ar" => "required|unique:companies",
+            "email" => "required|email|unique:companies",
+            "tel1" => "required",
+            "tel2" => "",
+            "tel3" => "",
+            "website" => "",
+            "address" => "required",
+            "long" => "required",
+            "lat" => "required",
+            "commercial_record" => "required|url",
+            "tax_card" => "required|url",
+            "timezone" => "required",
+            "note" => "",
+            "plan_id" => "required",
+            "pay_method" => "required",
+            "pay_date" => "required",
+            "start_date" => "required",
         ]);
 
         if ($validator->fails()) {
@@ -85,7 +98,7 @@ class CompanyController extends Controller
             }
         company::create($data);
 
-        return redirect()->route('companies.create')->with(['success' => 'تم الحفظ بنجاح']);
+        return redirect()->route('companies.index')->with(['success' => 'تم الحفظ بنجاح']);
     }
 
     /**
@@ -124,8 +137,40 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+
+
             $data = $request->all();
             $company   = company::findOrFail($id);
+            
+            
+            $validator = Validator::make($data,  [
+                "name_en" => "required|unique:companies,name_en,".$company->id,
+                "name_ar" => "required|unique:companies,name_ar,".$company->id,
+                "email" => "required|email|unique:companies,email,".$company->id,
+                "tel1" => "required",
+                "tel2" => "",
+                "tel3" => "",
+                "website" => "",
+                "address" => "required",
+                "long" => "required",
+                "lat" => "required",
+                "commercial_record" => "required|url",
+                "tax_card" => "required|url",
+                "timezone" => "required",
+                "note" => "",
+                "plan_id" => "required",
+                "pay_method" => "required",
+                "pay_date" => "required",
+                "start_date" => "required",
+            ]);
+    
+            if ($validator->fails()) {
+                $error = $validator->errors()->first();
+                return back()->withInput()->with('error', $error);
+            }
+            
+            
             $user_id  = Auth::id();
             $data['user_id'] = $user_id;
             
@@ -138,18 +183,16 @@ class CompanyController extends Controller
             $data['commercial_record_file'] = '/files/' . $fileName;
         }
 
-            // upload files
-            if ($file = $request->hasFile('tax_card_file')) {
-                $file = $request->file('tax_card_file');
-                $fileName = time() . '-' . $file->getClientOriginalName();
-                $destinationPath = public_path() . '/files';
-                $file->move($destinationPath, $fileName);
-                $data['tax_card_file'] = '/files/' . $fileName;
-            }
-            
+        // upload files
+        if ($file = $request->hasFile('tax_card_file')) {
+            $file = $request->file('tax_card_file');
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $destinationPath = public_path() . '/files';
+            $file->move($destinationPath, $fileName);
+            $data['tax_card_file'] = '/files/' . $fileName;
+        }
             
             $company->update($data);
-            
             
             return redirect()->route('companies.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
         } catch (\Exception $ex) {
@@ -173,16 +216,7 @@ class CompanyController extends Controller
             return redirect()->route('companies.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
         }
     }
-    private function generateRandomString($length)
-    {
-        $characters = "0123456789";
-        $charactersLength = strlen($characters);
-        $randomString = "";
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
+
     public function login(Request $req){
         $validator = Validator::make($req->all(), [
             // 'g-recaptcha-response' => 'required|captcha',

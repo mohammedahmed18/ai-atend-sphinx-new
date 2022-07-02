@@ -1,7 +1,8 @@
 @extends('layouts.vertical', ['title' => 'Form Components'])
 @section('css')
     <!-- Plugins css -->
-    <link href="{{ asset('assets/libs/mohithg-switchery/mohithg-switchery.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/mohithg-switchery/mohithg-switchery.min.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('assets/libs/multiselect/multiselect.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/selectize/selectize.min.css') }}" rel="stylesheet" type="text/css" />
@@ -54,65 +55,73 @@
                     <div class="card-body">
                         <h4 class="header-title">Users</h4>
 
-                        <form action="{{ route('users.update' , $user->id)}}" method="post" class="needs-validation" novalidate>
+                        <form action="{{ route('users.update', $user->id) }}" method="post">
                             @method('PUT')
                             @csrf
                             <div class="form-group">
                                 <label for="nameen" class="col-form-label">Name (en)</label>
-                                <input type="text" name="name_en" class="form-control" id="nameen" placeholder="Name" value="{{$user->name_en}}" required>
+                                <input type="text" name="name_en" class="form-control" id="nameen" placeholder="Name"
+                                    value="{{ $user->name_en }}" required>
                             </div>
 
 
                             <div class="form-group">
                                 <label for="namear" class="col-form-label">Name (ar)</label>
-                                <input type="text" name="name_ar" class="form-control" id="namear" placeholder="Name" value="{{$user->name_ar}}" required>
+                                <input type="text" name="name_ar" class="form-control" id="namear" placeholder="Name"
+                                    value="{{ $user->name_ar }}" required>
                             </div>
 
 
                             <div class="form-group">
                                 <label for="inputEmail4" class="col-form-label">Email</label>
-                                <input type="email" name="email" class="form-control" id="inputEmail4" value="{{$user->email}}" placeholder="Email" required>
+                                <input type="email" name="email" class="form-control" id="inputEmail4"
+                                    value="{{ $user->email }}" placeholder="Email" required>
                             </div>
-                          
+
                             <div class="form-group">
                                 <label for="inputAddress" class="col-form-label">Address</label>
-                                <input type="text" name="address" class="form-control" id="inputAddress" value="{{$user->address}}" placeholder="1234 Main St">
+                                <input type="text" name="address" class="form-control" id="inputAddress"
+                                    value="{{ $user->address }}" placeholder="1234 Main St">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="tel1" class="col-form-label">tel 1</label>
-                                <input type="text" name="Tel_1" class="form-control" id="tel1" placeholder="010" value="{{$user->Tel_1}}" required>
+                                <input type="text" name="Tel_1" class="form-control" id="tel1" placeholder="010"
+                                    value="{{ $user->Tel_1 }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="tel2" class="col-form-label">tel 2</label>
-                                <input type="text" name="Tel_2" class="form-control" id="tel2" value="{{$user->Tel_2}}" placeholder="010">
+                                <input type="text" name="Tel_2" class="form-control" id="tel2" value="{{ $user->Tel_2 }}"
+                                    placeholder="010">
                             </div>
 
                             <div class="form-group">
                                 <label for="tel3" class="col-form-label">tel 3</label>
-                                <input type="text" name="Tel_3" class="form-control" id="tel3" value="{{$user->Tel_3}}" placeholder="010">
+                                <input type="text" name="Tel_3" class="form-control" id="tel3" value="{{ $user->Tel_3 }}"
+                                    placeholder="010">
                             </div>
 
                             <div class="form-group">
                                 <label for="roleInput" class="col-form-label">Role</label>
                                 <select name="role_id" id="roleInput" class="selectize-drop-header"
-                                placeholder="Select a role..." required>
-                                @foreach ($roles as $role)
-                                    @if ($user->roles->count() > 0)
-                                        <option {{ $role->id == $user->roles->first()->id ? 'selected' : '' }}
-                                            value="{{ $role->id }}">{{ $role->name }}</option>
-                                    @else
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    placeholder="Select a role..." required>
+                                    @foreach ($roles as $role)
+                                        @if ($user->roles->count() > 0)
+                                            <option {{ $role->id == $user->roles->first()->id ? 'selected' : '' }}
+                                                value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @else
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
 
-                                    @endif
-                                @endforeach
-                            </select>
+                                        @endif
+                                    @endforeach
+                                </select>
                             </div>
 
 
 
-                            <center><button type="submit" class="btn btn-success waves-effect waves-light">Update</button></center>
+                            <center><button type="submit" class="btn btn-success waves-effect waves-light">Update</button>
+                            </center>
 
                         </form>
 

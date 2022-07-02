@@ -73,7 +73,7 @@
 
                             <div class="form-group">
                                 <label for="name" class="col-form-label">cost</label>
-                                <input type="name" name="coast" class="form-control" value={{ $plan->coast }} id="coast"
+                                <input type="name" name="cost" class="form-control" value={{ $plan->coast }} id="coast"
                                     placeholder="coast">
                             </div>
 

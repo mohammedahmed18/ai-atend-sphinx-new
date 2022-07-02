@@ -6,15 +6,16 @@ use App\payment_details;
 use App\payment_methods;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class payment_methodsController extends Controller
 {
-     
+
     public function __construct()
     {
-        $this->middleware('permission:payment_method_add' , ['only' => ['create' , 'store']]);
-        $this->middleware('permission:payment_method_view' , ['only' => ['index']]);
-        $this->middleware('permission:payment_method_edit' , ['only' => ['edit' , 'update']]);
+        $this->middleware('permission:payment_method_add', ['only' => ['create', 'store']]);
+        $this->middleware('permission:payment_method_view', ['only' => ['index']]);
+        $this->middleware('permission:payment_method_edit', ['only' => ['edit', 'update']]);
     }
 
 
@@ -43,11 +44,23 @@ class payment_methodsController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => "required",
+                'details' => 'required',
+                "note" => "required",
+                'isActive' => 'required'
+            ]
+        );
+        if ($validator->fails()) {
+            $err_msg = $validator->errors()->first();
+            return back()->with('error', $err_msg)->withInput();
+        }
+
         $data['update_user_id'] = Auth::id();;
         $payment_methods = payment_methods::create($data);
         return redirect()->route('payment_methods.index')->with(['success' => 'تم الحفظ بنجاح']);
-    
     }
 
     /**
@@ -71,7 +84,6 @@ class payment_methodsController extends Controller
     {
         $payment_method = payment_methods::FindOrFail($id);
         return view('payment_methods.update', compact('payment_method'));
-    
     }
 
     /**
@@ -84,15 +96,29 @@ class payment_methodsController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+            $data = $request->all();
+            $validator = Validator::make(
+                $data,
+                [
+                    'name' => "required",
+                    'details' => 'required',
+                    "note" => "required",
+                    'isActive' => 'required'
+                ]
+            );
             $payment_method = payment_methods::findOrFail($id);
 
+            if ($validator->fails()) {
+                $err_msg = $validator->errors()->first();
+                return back()->with('error', $err_msg)->withInput();
+            }
             //update in db
-            $payment_method->update($request->all());
+            $payment_method->update($data);
             return redirect()->route('payment_methods.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->route('payment_methods.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
         }
-    
     }
 
     /**

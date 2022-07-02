@@ -47,11 +47,11 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{ route('roles.store') }}" method="post" autocomplete="off"
-                            class="needs-validation" novalidate>
+                        <form action="{{ route('roles.store') }}" method="post" autocomplete="off">
                             @csrf
                             <div class="form-group">
-                                <label for="name-input" class="col-form-label">Name *</label>
+                                <label for="name-input" class="col-form-label">Name <span
+                                        class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control" id="name-input" placeholder="Name"
                                     required>
                             </div>
@@ -65,7 +65,7 @@
 
                             <div class="form-group">
 
-                                <label class="col-form-label">Permissions</label>
+                                <label class="col-form-label">Permissions <span class="text-danger">*</span></label>
 
 
                                 <div class="mt-4 row gx-2">

@@ -8,6 +8,7 @@ use App\User;
 use App\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -46,6 +47,23 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name_en' => 'required|unique:users',
+                "name_ar" => 'required|unique:users',
+                "email" => 'required|unique:users',
+                'Tel_1' => 'required',
+                'password' => 'required',
+                'role_id' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $err_msg = $validator->errors()->first();
+            return back()->with('error', $err_msg)->withInput();
+        }
+
+
         $data = $request->except('role_id');
         $user = User::create($data);
         // attach user role
@@ -53,8 +71,6 @@ class UsersController extends Controller
         $role = Role::find($request->role_id);
         $user->attachPermissions($role->permissions);
         return redirect()->route('users.index')->with(['success' => 'تم الحفظ بنجاح']);
-
-        return view('users.add');
     }
 
     public function edit(Request $resuest, $id)
@@ -69,6 +85,22 @@ class UsersController extends Controller
     public function update(Request $request, $id){
         try{    
             $user = User::findOrFail($id);
+
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name_en' => 'required|unique:users,name_en,'.$user->id,
+                    "name_ar" => 'required|unique:users,name_ar,'.$user->id,
+                    "email" => 'required|unique:users,email,'.$user->id,
+                    'Tel_1' => 'required',
+                    'password' => 'required',
+                    'role_id' => 'required',
+                ]
+            );
+            if ($validator->fails()) {
+                $err_msg = $validator->errors()->first();
+                return back()->with('error', $err_msg)->withInput();
+            }
 
            //update in db
             $user->update($request->all());
