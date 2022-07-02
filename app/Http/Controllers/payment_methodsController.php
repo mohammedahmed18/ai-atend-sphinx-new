@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\payment_details;
 use App\payment_methods;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,8 +101,20 @@ class payment_methodsController extends Controller
      * @param  \App\payment_methods  $payment_methods
      * @return \Illuminate\Http\Response
      */
-    public function destroy(payment_methods $payment_methods)
+    public function destroy($id)
     {
-        //
+        try {
+            $payment_method = payment_methods::findOrFail($id);
+            $payment_detail  = payment_details::where('paymethod_id', $id)->first();
+            if ($payment_detail) {
+                return back()->with(['error' => 'هذا طريقة الدفع يوجد عليه موظفين لا يمكن مسحه']);
+            } else {
+                $payment_method->delete();
+                return back()->with(['success' => 'تم حذف طريقة الدفع بنجاح']);
+            }
+        } catch (\Exception $ex) {
+            // return $ex;
+            return back()->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
+        }
     }
 }
