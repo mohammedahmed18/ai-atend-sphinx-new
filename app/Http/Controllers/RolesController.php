@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Permission;
+use App\PermissionCollection;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -34,8 +35,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $permissions = $this->permessions_data();
-        return view('roles.add' , compact('permissions'));
+        $permission_collections = PermissionCollection::orderBy('label')->get();
+        return view('roles.add' , compact('permission_collections'));
     }
 
     /**
@@ -96,8 +97,8 @@ class RolesController extends Controller
     {
         //
         $role = Role::FindOrFail($id);
-        $permissions = $this->permessions_data();
-        return view('roles.edit',compact('role' , 'permissions'));
+        $permission_collections = PermissionCollection::orderBy('label')->get();
+        return view('roles.edit',compact('role' , 'permission_collections'));
     }
 
     /**
@@ -112,10 +113,11 @@ class RolesController extends Controller
         try{    
             $role = Role::findOrFail($id);
 
-        //update in db
+             //update in db
             $role->update($request->except('permissions'));
+            if(!$role->name == 'super_admin'){
             $role->syncPermissions($request->permissions);
-            
+            }
             return redirect()->route('roles.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
 
         }catch(\Exception $ex){

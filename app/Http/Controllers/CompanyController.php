@@ -183,4 +183,30 @@ class CompanyController extends Controller
         }
         return $randomString;
     }
+    public function login(Request $req){
+        $validator = Validator::make($req->all(), [
+            // 'g-recaptcha-response' => 'required|captcha',
+            'email' => 'required',
+            'password' => 'required'
+        ], [
+            'g-recaptcha-response.required' => 'You must check the reCAPTCHA.',
+            'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.'
+        ]);
+
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return back()->withInput()->with('error', $error);
+        }
+        $company = company::where('email' , $req->email )->first();
+        if(!$company){
+            return back()->withInput()->with('error', 'invalid email');
+        }
+        if($req->password != $company->registration_num){
+            return back()->withInput()->with('error', 'invalid email or password');
+        }
+        // comapny has valid cradentials
+        Auth::guard('company')->login($company);
+        return redirect('/company/home');
+
+    }   
 }

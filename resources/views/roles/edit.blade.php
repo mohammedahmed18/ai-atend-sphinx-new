@@ -38,15 +38,14 @@
         </div>
         <!-- end page title -->
 
-
-
-
         <!-- Form row -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-
+                        @if ($role->name == 'super_admin')
+                            <span class="mb-2 text-info font-weight-bold">you can't update the super admin</span>
+                        @endif
                         <form action="{{ route('roles.update', $role->id) }}" method="post" autocomplete="off"
                             class="needs-validation" novalidate>
                             @csrf
@@ -67,12 +66,14 @@
 
                                 <label class="col-form-label">Permissions</label>
 
-
                                 <div class="mt-4 row gx-2">
-                                    @foreach ($permissions as $collection)
-                                        <div class="mb-4 bg-white col-md-6">
-                                            @foreach ($collection as $p)
-                                                <div class="">
+                                    @foreach ($permission_collections as $collection)
+                                        <div class="mb-4 d-flex bg-white col-md-12 row">
+                                            <span
+                                                class="font-weight-bold mr-4 col-md-2 text-primary">{{ $collection->label }}</span>
+
+                                            @foreach ($collection->permissions as $p)
+                                                <div class="mx-1">
                                                     <div class="mb-2 checkbox checkbox-primary">
                                                         <input {{ $role->name == 'super_admin' ? 'disabled' : '' }}
                                                             id="{{ $p->id }}" type="checkbox"
@@ -84,10 +85,10 @@
                                             @endforeach
                                         </div> <!-- end col-->
 
-
                                     @endforeach
 
                                 </div>
+
                                 <!-- end row-->
 
                             </div>

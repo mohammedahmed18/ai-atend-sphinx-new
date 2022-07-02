@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
+// company login
+Route::post('/companies/login' , 'CompanyController@login')->name('company_login');
+
+
 
 Route::resource('companies_registre', 'RequestCompanyController');
 Auth::routes();

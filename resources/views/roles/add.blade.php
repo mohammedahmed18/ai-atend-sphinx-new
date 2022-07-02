@@ -1,7 +1,8 @@
 @extends('layouts.vertical', ['title' => 'Form Components'])
 @section('css')
     <!-- Plugins css -->
-    <link href="{{ asset('assets/libs/mohithg-switchery/mohithg-switchery.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/mohithg-switchery/mohithg-switchery.min.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('assets/libs/multiselect/multiselect.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/selectize/selectize.min.css') }}" rel="stylesheet" type="text/css" />
@@ -46,13 +47,13 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{ route('roles.store') }}" method="post" autocomplete="off" class="needs-validation"
-                            novalidate>
+                        <form action="{{ route('roles.store') }}" method="post" autocomplete="off"
+                            class="needs-validation" novalidate>
                             @csrf
                             <div class="form-group">
                                 <label for="name-input" class="col-form-label">Name *</label>
                                 <input type="text" name="name" class="form-control" id="name-input" placeholder="Name"
-                                required>
+                                    required>
                             </div>
 
                             <div class="form-group">
@@ -68,10 +69,13 @@
 
 
                                 <div class="mt-4 row gx-2">
-                                    @foreach ($permissions as $collection)
-                                        <div class="mb-4 bg-white col-md-6">
-                                            @foreach ($collection as $p)
-                                                <div class="">
+                                    @foreach ($permission_collections as $collection)
+                                        <div class="mb-4 d-flex bg-white col-md-12 row">
+                                            <span
+                                                class="font-weight-bold mr-4 col-md-2 text-primary">{{ $collection->label }}</span>
+
+                                            @foreach ($collection->permissions as $p)
+                                                <div class="mx-1">
                                                     <div class="mb-2 checkbox checkbox-primary">
                                                         <input id="{{ $p->id }}" type="checkbox"
                                                             value="{{ $p->id }}" name="permissions[]">
@@ -80,7 +84,6 @@
                                                 </div>
                                             @endforeach
                                         </div> <!-- end col-->
-
 
                                     @endforeach
 
