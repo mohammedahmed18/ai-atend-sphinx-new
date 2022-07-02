@@ -40,6 +40,7 @@
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Comapny</th>
                                     <th>Plan</th>
                                     <th>Payment Method</th>
@@ -47,7 +48,6 @@
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>update/create by</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
 
@@ -55,25 +55,23 @@
                             <tbody>
                                 @foreach ($payment_details as $payment_detail)
                                     <tr>
+                                        <td class="px-5 py-0">
+                                            <div class="row row-xs wd-xl-4p">
+                                                @permission('payment_details_edit')
+                                                    <a href="{{ route('payment_details.edit', $payment_detail->id) }}"
+                                                        class="action-icon">
+                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
+                                                @endpermission
+                                            </div>
+                                        </td>
                                         <td>{{ $payment_detail->company->name_en }}</td>
                                         <td>{{ $payment_detail->plan->name_en }}</td>
                                         <td>{{ $payment_detail->payment_method->name }}</td>
                                         <td>{{ $payment_detail->pay_date }}</td>
                                         <td>{{ $payment_detail->start_date }}</td>
                                         <td>{{ $payment_detail->end_date }}</td>
-                                        <td>{{ $payment_detail->user->name_en }}</td>
-                                        <td>
-                                            <div class="row row-xs wd-xl-4p">
-
-                                                @permission('payment_details_edit')
-                                                    <a href="{{ route('payment_details.edit', $payment_detail->id) }}"
-                                                        class="action-icon">
-                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
-                                                    @endpermission
-                                                </div>
-                                            </td>
-                                        </tr>
-
+                                        <td>{{ $payment_detail->user->name_en }}</td>                                        
+                                    </tr>
                                     @endforeach
 
 
