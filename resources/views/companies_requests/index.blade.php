@@ -42,6 +42,9 @@
                                 <tr>
                                     <th>Company</th>
                                     <th>status</th>
+                                    <th>company email</th>
+                                    <th>company phone</th>
+                                    <th>additional information</th>
                                     <th>last edit by</th>
                                     <th>Action</th>
                                 </tr>
@@ -49,11 +52,11 @@
 
 
                             <tbody>
-                                @foreach ($companies_requests as $request)
+                                @foreach ($companies_requests as $c_request)
                                     <tr>
-                                        <td>{{ $request->company->name_en }}</td>
+                                        <td>{{ $c_request->company->name_en }}</td>
                                         <td>
-                                            @switch($request->status)
+                                            @switch($c_request->status)
                                                 @case(1)
                                                     <span class="badge badge-warning">pending</span>
                                                 @break
@@ -65,25 +68,31 @@
                                                 @break
                                             @endswitch
                                         </td>
+                                        <td><a
+                                                href="mailto:{{ $c_request->company->email }}">{{ $c_request->company->email }}</a>
+                                        </td>
+                                        <td>{{ $c_request->company->Tel_1 }}</td>
+                                        <td>{{ $c_request->notes }}</td>
                                         <td>
-                                            @if ($request->user)
-                                                {{ $request->user->name_en }}
+                                            @if ($c_request->user)
+                                                {{ $c_request->user->name_en }}
                                             @endif
                                         </td>
 
                                         <td>
-                                            <form action="{{ route('companies_requests.update', $request->id) }}"
+                                            <form action="{{ route('companies_requests.update', $c_request->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PATCH')
-                                                @if ($request->status == 1 || $request->status == 3)
+                                                @if ($c_request->status == 1 || $c_request->status == 3)
                                                     <input hidden name="status" value="2" />
                                                     <button type="submit" class="btn btn-primary">Activate</button>
 
-                                                @elseif($request->status == 2)
+                                                @elseif($c_request->status == 2)
                                                     <input hidden name="status" value="3" />
                                                     <button type="submit" class="btn btn-danger">DeActivate</button>
                                                 @endif
+                                            </form>
 
                                         </td>
                                     </tr>

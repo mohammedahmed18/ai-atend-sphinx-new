@@ -61,153 +61,183 @@
                     <div class="collapse" id="sidebar_roles">
                         <ul class="nav-second-level">
 
-                            <li>
-                                <a href="{{ route('roles.index') }}">Roles</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('roles.create') }}">Add role</a>
-                            </li>
+                            @permission('roles_permissions_view')
+                                <li>
+                                    <a href="{{ route('roles.index') }}">Roles</a>
+                                </li>
+                                @endpermission
 
-                            <li>
-                                <a href="{{ route('users.index') }}">Users</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('users.create') }}">add user</a>
-                            </li>
+                                @permission('roles_permissions_add')
+                                    <li>
+                                        <a href="{{ route('roles.create') }}">Add role</a>
+                                    </li>
+                                    @endpermission
 
-                        </ul>
-                    </div>
-                </li>
-                {{-- end of roles --}}
+                                    @permission('users_view')
+                                        <li>
+                                            <a href="{{ route('users.index') }}">Users</a>
+                                        </li>
+                                        @endpermission
 
-                <li>
-                    <a href="#sidebaralerts" data-toggle="collapse">
-                        <i class="fe-alert-triangle"></i>
-                        <span> Alerts </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebaralerts">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('alerts.index') }}">Alerts</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('alerts.create') }}">create a new Alerts</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('alerts_to_companies.create') }}">send alerts</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                                        @permission('users_add')
+                                            <li>
+                                                <a href="{{ route('users.create') }}">add user</a>
+                                            </li>
+                                            @endpermission
 
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- end of roles --}}
 
+                                <li>
+                                    <a href="#sidebaralerts" data-toggle="collapse">
+                                        <i class="fe-alert-triangle"></i>
+                                        <span> Alerts </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebaralerts">
+                                        <ul class="nav-second-level">
+                                            @permission('alerts_view')
+                                                <li>
+                                                    <a href="{{ route('alerts.index') }}">Alerts</a>
+                                                </li>
+                                                @endpermission
+                                                @permission('alerts_add')
+                                                    <li>
+                                                        <a href="{{ route('alerts.create') }}">create a new Alerts</a>
+                                                    </li>
+                                                    @endpermission
 
-                <li>
-                    <a href="#sidebarcompany" data-toggle="collapse">
-                        <i class="far fa-building"></i>
-                        <span> Companies </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarcompany">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('companies.index') }}">Comapnies</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('companies.create') }}">Add new Companies</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('companies_requests.index') }}">Companies requests</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                {{-- end of branches --}}
-                {{-- start of branches --}}
-                <li>
-                    <a href="#sidebarplan" data-toggle="collapse">
-                        <i data-feather="package" class="far plus-square"></i>
-                        <span> Plans </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarplan">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('plans.index') }}">Plans</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('plans.create') }}">Add new Plans</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                {{-- end of branches --}}
+                                                    @permission('alerts_add')
+                                                        <li>
+                                                            <a href="{{ route('alerts_to_companies.create') }}">send alerts</a>
+                                                        </li>
+                                                        @endpermission
 
-
-                {{-- end of branches --}}
-                {{-- start of paymentmethods --}}
-                <li>
-                    <a href="#sidebarpaymentmethods" data-toggle="collapse">
-                        <i data-feather="package" class="far plus-square"></i>
-                        <span> Payment Methods </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarpaymentmethods">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('payment_methods.index') }}">Payment Methods</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('payment_methods.create') }}">Add new Payment Methods</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                {{-- end of paymentmethods --}}
+                                                    </ul>
+                                                </div>
+                                            </li>
 
 
 
-                {{-- start of paymentdetails --}}
-                <li>
-                    <a href="#sidebarpaymentdetails" data-toggle="collapse">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <span> Payment Details </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarpaymentdetails">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('payment_details.index') }}">Payment Details</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('payment_details.create') }}">Add new Payment Details</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                {{-- end of paymentdetails --}}
+                                            <li>
+                                                <a href="#sidebarcompany" data-toggle="collapse">
+                                                    <i class="far fa-building"></i>
+                                                    <span> Companies </span>
+                                                    <span class="menu-arrow"></span>
+                                                </a>
+                                                <div class="collapse" id="sidebarcompany">
+                                                    <ul class="nav-second-level">
+                                                        @permission('company_view')
+                                                            <li>
+                                                                <a href="{{ route('companies.index') }}">Comapnies</a>
+                                                            </li>
+                                                            @endpermission
+                                                            @permission('company_add')
+                                                                <li>
+                                                                    <a href="{{ route('companies.create') }}">Add new Companies</a>
+                                                                </li>
+                                                                @endpermission
+
+                                                                @permission('company_add', 'company_edit')
+                                                                    <li>
+                                                                        <a href="{{ route('companies_requests.index') }}">Companies requests</a>
+                                                                    </li>
+                                                                    @endpermission
+
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        {{-- end of branches --}}
+                                                        {{-- start of branches --}}
+                                                        <li>
+                                                            <a href="#sidebarplan" data-toggle="collapse">
+                                                                <i data-feather="package" class="far plus-square"></i>
+                                                                <span> Plans </span>
+                                                                <span class="menu-arrow"></span>
+                                                            </a>
+                                                            <div class="collapse" id="sidebarplan">
+                                                                <ul class="nav-second-level">
+                                                                    @permission('plans_view')
+                                                                        <li>
+                                                                            <a href="{{ route('plans.index') }}">Plans</a>
+                                                                        </li>
+                                                                        @endpermission
+                                                                        @permission('plans_add')
+                                                                            <li>
+                                                                                <a href="{{ route('plans.create') }}">Add a new plan</a>
+                                                                            </li>
+                                                                            @endpermission
+                                                                        </ul>
+                                                                    </div>
+                                                                </li>
+                                                                {{-- end of branches --}}
+
+
+                                                                {{-- end of branches --}}
+                                                                {{-- start of paymentmethods --}}
+                                                                <li>
+                                                                    <a href="#sidebarpaymentmethods" data-toggle="collapse">
+                                                                        <i class="fa fa-dollar-sign" aria-hidden="true"></i>
+                                                                        <span> Payment Methods </span>
+                                                                        <span class="menu-arrow"></span>
+                                                                    </a>
+                                                                    <div class="collapse" id="sidebarpaymentmethods">
+                                                                        <ul class="nav-second-level">
+                                                                            @permission('payment_method_view')
+                                                                                <li>
+                                                                                    <a href="{{ route('payment_methods.index') }}">Payment Methods</a>
+                                                                                </li>
+                                                                                @endpermission
+                                                                                @permission('payment_method_edit')
+                                                                                    <li>
+                                                                                        <a href="{{ route('payment_methods.create') }}">Add new Payment Methods</a>
+                                                                                    </li>
+                                                                                    @endpermission
+
+                                                                                </ul>
+                                                                            </div>
+                                                                        </li>
+                                                                        {{-- end of paymentmethods --}}
 
 
 
+                                                                        {{-- start of paymentdetails --}}
+                                                                        <li>
+                                                                            <a href="#sidebarpaymentdetails" data-toggle="collapse">
+                                                                                <i class="fa fa-dollar-sign" aria-hidden="true"></i>
+                                                                                <span> Payment Details </span>
+                                                                                <span class="menu-arrow"></span>
+                                                                            </a>
+                                                                            <div class="collapse" id="sidebarpaymentdetails">
+                                                                                <ul class="nav-second-level">
+                                                                                    @permission('payment_details_view')
+                                                                                        <li>
+                                                                                            <a href="{{ route('payment_details.index') }}">Payment Details</a>
+                                                                                        </li>
+                                                                                        @endpermission
 
+                                                                                        @permission('payment_details_add')
+                                                                                            <li>
+                                                                                                <a href="{{ route('payment_details.create') }}">Add new Payment Details</a>
+                                                                                            </li>
+                                                                                            @endpermission
 
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </li>
+                                                                                {{-- end of paymentdetails --}}
 
+                                                                            </ul>
 
+                                                                        </div>
+                                                                        <!-- End Sidebar -->
 
+                                                                        <div class="clearfix"></div>
 
+                                                                    </div>
+                                                                    <!-- Sidebar -left -->
 
-
-
-            </ul>
-
-        </div>
-        <!-- End Sidebar -->
-
-        <div class="clearfix"></div>
-
-    </div>
-    <!-- Sidebar -left -->
-
-</div>
-<!-- Left Sidebar End -->
+                                                                </div>
+                                                                <!-- Left Sidebar End -->

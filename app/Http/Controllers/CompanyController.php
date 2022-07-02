@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\company;
-use App\Permission;
 use App\plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
@@ -18,10 +18,10 @@ class CompanyController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:company_add' , ['only' => ['create' , 'store']]);
-        $this->middleware('permission:company_view' , ['only' => ['index']]);
-        $this->middleware('permission:company_edit' , ['only' => ['edit' , 'update']]);
-        $this->middleware('permission:company_delete' , ['only' => ['destroy']]);
+        $this->middleware('permission:company_add', ['only' => ['create', 'store']]);
+        $this->middleware('permission:company_view', ['only' => ['index']]);
+        $this->middleware('permission:company_edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:company_delete', ['only' => ['destroy']]);
     }
 
 
@@ -43,18 +43,48 @@ class CompanyController extends Controller
         return view("companies.create", compact('plans'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $req)
     {
+
+
+
+        $validator = Validator::make($req->all(), [
+            'email' => 'required|unique:companies',
+            'name_en' => 'required|unique:companies',
+            'name_ar' => 'required|unique:companies',
+        ]);
+
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return back()->withInput()->with('error', $error);
+        }
+
+        
         $data = $req->all();
-        $data['user_id'] = $user_id = Auth::id();
-        $data['registration_num'] = $this->generateRandomString(11);
-        $company = company::create($data);
+        $data['user_id'] = Auth::id();
+        $data['registration_num'] = time() . mt_rand(300, 700);
+        $data['isActive'] = true;
+
+        // upload files
+        if ($file = $req->hasFile('commercial_record_file')) {
+            $file = $req->file('commercial_record_file');
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $destinationPath = public_path() . '/files';
+            $file->move($destinationPath, $fileName);
+            $data['commercial_record_file'] = '/files/' . $fileName;
+        }
+
+            // upload files
+            if ($file = $req->hasFile('tax_card_file')) {
+                $file = $req->file('tax_card_file');
+                $fileName = time() . '-' . $file->getClientOriginalName();
+                $destinationPath = public_path() . '/files';
+                $file->move($destinationPath, $fileName);
+                $data['tax_card_file'] = '/files/' . $fileName;
+            }
+        company::create($data);
+
         return redirect()->route('companies.create')->with(['success' => 'تم الحفظ بنجاح']);
     }
 
@@ -80,7 +110,7 @@ class CompanyController extends Controller
         // echo $id;
         $company = company::FindOrFail($id);
         // return $company;
-        $plans   = Plan::all(); 
+        $plans   = Plan::all();
         return view('companies.update', compact('company', 'plans'));
     }
 
@@ -94,10 +124,33 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $data = $request->all();
             $company   = company::findOrFail($id);
             $user_id  = Auth::id();
-            $request['user_id'] = $user_id;
-            $company->update($request->all());
+            $data['user_id'] = $user_id;
+            
+        // upload files
+        if ($file = $request->hasFile('commercial_record_file')) {
+            $file = $request->file('commercial_record_file');
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $destinationPath = public_path() . '/files';
+            $file->move($destinationPath, $fileName);
+            $data['commercial_record_file'] = '/files/' . $fileName;
+        }
+
+            // upload files
+            if ($file = $request->hasFile('tax_card_file')) {
+                $file = $request->file('tax_card_file');
+                $fileName = time() . '-' . $file->getClientOriginalName();
+                $destinationPath = public_path() . '/files';
+                $file->move($destinationPath, $fileName);
+                $data['tax_card_file'] = '/files/' . $fileName;
+            }
+            
+            
+            $company->update($data);
+            
+            
             return redirect()->route('companies.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->route('companies.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
@@ -112,14 +165,12 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        try{
+        try {
             $company = company::findOrFail($id);
             $company->delete();
             return redirect()->route('companies.index')->with(['success' => 'Delete this Alert Success']);
-
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return redirect()->route('companies.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
-
         }
     }
     private function generateRandomString($length)

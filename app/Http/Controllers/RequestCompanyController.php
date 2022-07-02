@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\CompaniesRegistrationRequest;
 use App\company;
+use App\CompanyRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class RequestCompanyController extends Controller
 {
@@ -36,71 +39,30 @@ class RequestCompanyController extends Controller
     public function store(Request $req)
     {
 
-        $req->validate([
+        $validator = Validator::make($req->all(), [
             'g-recaptcha-response' => 'required|captcha',
             'name_en' => 'required',
-            'email' => 'required|unique:companies'
+            'email' => 'required|unique:companies',
+            'Tel_1' => 'required'
         ], [
+            'email.unique' => 'this email is already registered',
             'g-recaptcha-response.required' => 'You must check the reCAPTCHA.',
             'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.'
         ]);
 
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return back()->withInput()->with('error', $error);
+        }
 
-        $data = $req->all();
+
+        $data = $req->except(['notes']);
         $company = company::create($data);
-        $id      = [];
-        $id['company_id']      = $company->id;
-        $CompaniesRegistrationRequest =  CompaniesRegistrationRequest::create($id);
-        return redirect('/')->with("msg_successRegister" , "success");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function show_requests()
-    {
-        return "show function ";
+        $company_request      = [];
+        $company_request['company_id']      = $company->id;
+        $company_request['user_id']      = Auth::id();
+        $company_request['notes']      = $req->notes;
+        CompanyRequest::create($company_request);
+        return redirect('/')->with("msg_successRegister", "success");
     }
 }

@@ -9,6 +9,7 @@ Route::resource('companies_registre', 'RequestCompanyController');
 Auth::routes();
 // Dashboard Routes
 
+
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
 
     Route::resource('alerts', 'AlertController');

@@ -34,7 +34,8 @@
                     <div class="card-body">
                         <h4 class="header-title">companies</h4>
 
-                        <form action="{{ route('companies.update', $company->id) }}" method="post">
+                        <form action="{{ route('companies.update', $company->id) }}" method="post"
+                            enctype="multipart/form-data">
 
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
@@ -97,10 +98,37 @@
 
 
                             <div class="form-group">
+
+                                <label for="commercial_file_input" class="col-form-label">Commercial Record file</label>
+                                @if ($company->commercial_record_file)
+                                    <span class="text-info my-1">there is already a file for this field , choosing a new
+                                        file will delete the previous one and upload the new one</span>
+                                @endif
+                                <input type="file" name="commercial_record_file" class="form-control"
+                                    id="commercial_file_input">
+                            </div>
+
+
+
+                            <div class="form-group">
+
                                 <label for="name" class="col-form-label">tax_card</label>
                                 <input type="name" value="{{ $company->tax_card }}" name="tax_card" class="form-control"
                                     id="name" placeholder="tax_card ...">
                             </div>
+
+
+                            <div class="form-group">
+
+                                <label for="tax_card_input" class="col-form-label">Tax card file</label>
+                                @if ($company->tax_card_file)
+                                    <span class="text-info my-1">there is already a file for this field , choosing a new
+                                        file will delete the previous one and upload the new one</span>
+                                @endif
+                                <input type="file" name="tax_card_file" class="form-control" id="tax_card_input">
+                            </div>
+
+
 
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Time-Zone</label>
@@ -128,7 +156,8 @@
                                     @foreach ($plans as $plan)
                                         @if ($plan->activate)
                                             @if ($company->plan && $company->plan == $plan)
-                                                <option selected value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                                <option selected value="{{ $plan->id }}">{{ $plan->name_en }}
+                                                </option>
                                             @else
                                                 <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
                                             @endif
@@ -155,10 +184,19 @@
 
                             <div class="form-group">
                                 <label for="note" class="col-form-label">Note</label>
-                                {{-- <input type="text" name="lon" class="form-control" id="locationlatitude" placeholder="Password"> --}}
                                 <textarea name="note" class="form-control" id="note" cols="30"
                                     rows="10">{{ $company->note }}</textarea>
                             </div>
+
+
+
+                            <div class="form-group">
+                                <label for="domain_url_i" class="col-form-label">domain url</label>
+                                <input name="domain_url" id="domain_url_i" class="form-control"
+                                    placeholder="http://www.domain.com" />
+                            </div>
+
+
                             <center><button type="submit" class="btn btn-success waves-effect waves-light">update</button>
                             </center>
 

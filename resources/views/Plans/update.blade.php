@@ -72,13 +72,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="name" class="col-form-label">coast</label>
+                                <label for="name" class="col-form-label">cost</label>
                                 <input type="name" name="coast" class="form-control" value={{ $plan->coast }} id="coast"
                                     placeholder="coast">
                             </div>
 
                             <div class="form-group">
-                                <label for="name" class="col-form-label">coast</label>
+                                <label for="name" class="col-form-label">duration in days</label>
                                 <input type="name" name="duration_days" class="form-control" id="duration_days"
                                     value={{ $plan->duration_days }} placeholder="Duration Days">
                             </div>

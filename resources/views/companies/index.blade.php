@@ -48,11 +48,14 @@
                                     <th>Tel 3</th>
                                     <th>email</th>
                                     <th>website</th>
+                                    <th>domain</th>
                                     <th>main address</th>
                                     <th>long</th>
                                     <th>lat</th>
                                     <th>commercial record</th>
+                                    <th>commercial record file</th>
                                     <th>tax card</th>
+                                    <th>tax card file</th>
                                     <th>active</th>
                                     <th>alerts</th>
                                     <th>current plan</th>
@@ -75,78 +78,82 @@
                                         <td>{{ $company->Tel_3 }}</td>
                                         <td>{{ $company->email }}</td>
                                         <td>{{ $company->website }}</td>
+                                        <td>{{ $company->domain_url }}</td>
                                         <td>{{ $company->main_address }}</td>
                                         <td>{{ $company->long }}</td>
                                         <td>{{ $company->lat }}</td>
                                         <td>{{ $company->commercial_record }}</td>
+                                        <td><a href="{{ $company->commercial_record_file }}" target="_blank"> file</a>
+                                        </td>
                                         <td>{{ $company->tax_card }}</td>
-                                        
-                                        @if ($company->isActive)
-                                            <td><span class="text-success">Active</span></td>
-                                        @else
-                                            <td><span class="text-danger">In Active</span></td>
-                                        @endif
-                                        <td>
-                                            <table class="table">
-                                                <tbody>
-                                                    @foreach ($company->alerts as $alert)
-                                                        <tr>
-                                                            <td>{{ $alert->message_en }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                        <td>
-                                            @if ($company->plan)
-                                                {{ $company->plan->name_en }}
-                                            @endif
-                                        </td>
-                                        <td>{{ $company->timezone }}</td>
+                                        <td><a href="{{ $company->tax_card_file }}" target="_blank"> file</a>
 
-                                        <td>
-                                            @if ($company->user)
-                                                {{ $company->user->name_en }}
-                                            @endif
-                                        </td>
-                                        <td>{{ $company->registration_num }}</td>
-                                        <td>
-                                            <div class="row row-xs wd-xl-4p">
-                                                <a href="{{ route('companies.edit', $company->id) }}"
-                                                    class="action-icon">
-                                                    <i class="mdi mdi-square-edit-outline"></i> </a>
-                                                <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
-                                                <form action="{{ route('companies.destroy', $company->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button style="border-color:white; color:red; font-size: 0.8rem;"
-                                                        class="action-icon delete" type="submit"> <i
-                                                            class="mdi mdi-delete"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                            @if ($company->isActive)
+                                        <td><span class="text-success">Active</span></td>
+                                    @else
+                                        <td><span class="text-danger">In Active</span></td>
+                                @endif
+                                <td>
+                                    <table class="table">
+                                        <tbody>
+                                            @foreach ($company->alerts as $alert)
+                                                <tr>
+                                                    <td>{{ $alert->message_en }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td>
+                                    @if ($company->plan)
+                                        {{ $company->plan->name_en }}
+                                    @endif
+                                </td>
+                                <td>{{ $company->timezone }}</td>
+
+                                <td>
+                                    @if ($company->user)
+                                        {{ $company->user->name_en }}
+                                    @endif
+                                </td>
+                                <td>{{ $company->registration_num }}</td>
+                                <td>
+                                    <div class="row row-xs wd-xl-4p">
+                                        @permission('company_edit')
+
+                                            <a href="{{ route('companies.edit', $company->id) }}" class="action-icon">
+                                                <i class="mdi mdi-square-edit-outline"></i> </a>
+                                            <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
+                                            @endpermission
+
+                                            {{-- <form action="{{ route('companies.destroy', $company->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button style="border-color:white; color:red; font-size: 0.8rem;"
+                                                class="action-icon delete" type="submit"> <i
+                                                    class="mdi mdi-delete"></i></button>
+                                        </form> --}}
+                                        </div>
+                                    </td>
                                     </tr>
 
-                                @endforeach
+                                    @endforeach
 
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
-                    </div> <!-- end card body-->
-                </div> <!-- end card -->
-            </div><!-- end col-->
-        </div>
-        <!-- end row-->
-
-
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div>
+            <!-- end row-->
 
 
 
 
-    </div> <!-- container -->
-@endsection
+        </div> <!-- container -->
+    @endsection
 
 @section('script')
     <!-- Plugins js-->

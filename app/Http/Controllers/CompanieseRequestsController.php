@@ -22,69 +22,43 @@ class CompanieseRequestsController extends Controller
     
     public function index()
     {
-        $companies_requests = CompanyRequest::orderBy('status')->get();
+        $companies_requests = CompanyRequest::orderBy('id' , 'desc')->orderBy('status')->get();
         return view('companies_requests.index' , compact('companies_requests'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     public function update(Request $request, $id)
     {
         // handle activate activate company
-
         $status = $request->status;
         $company_request = CompanyRequest::find($id);
         if($company_request && $status){
             $status = (int) $status;
             $company = Company::find($company_request->company_id);
             $company->isActive = $status == 2 ? 1 : 0;
+            if($status == 2){
+            // generate رقم وظيفي
+                $company->registration_num = time().mt_rand(300,700);
+            }
             $company->save(); 
             $company_request->status = $status;
             $company_request->user_id = auth()->id();
             $company_request->save();
 
-            return redirect()->route('companies_requests.index');
+            $msg = $status == 2 ? "company '".$company->name_en."' is activated" : "تم التعديل بنجاح";
+            return redirect()->route('companies_requests.index')->with('success' , $msg);
         }
     }
 

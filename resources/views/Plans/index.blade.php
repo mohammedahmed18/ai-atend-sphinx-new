@@ -26,9 +26,6 @@
         </div>
         <!-- end page title -->
 
-
-
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -70,33 +67,26 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <div class="row row-xs wd-xl-4p">
-                                                <a href="{{ route('plans.edit', $plan->id) }}" class="action-icon">
-                                                    <i class="mdi mdi-square-edit-outline"></i> </a>
+                                            @permission('plans_edit')
+                                                <div class="row row-xs wd-xl-4p">
+                                                    <a href="{{ route('plans.edit', $plan->id) }}" class="action-icon">
+                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
+                                                </div>
+                                                @endpermission
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
 
-                                            </div>
-                                        </td>
-                                    </tr>
+                        </div> <!-- end card body-->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+            </div>
+            <!-- end row-->
 
-                                @endforeach
-
-
-                            </tbody>
-                        </table>
-
-                    </div> <!-- end card body-->
-                </div> <!-- end card -->
-            </div><!-- end col-->
-        </div>
-        <!-- end row-->
-
-
-
-
-
-
-    </div> <!-- container -->
-@endsection
+        </div> <!-- container -->
+    @endsection
 
 @section('script')
     <!-- Plugins js-->

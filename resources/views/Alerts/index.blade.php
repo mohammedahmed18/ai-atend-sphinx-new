@@ -96,45 +96,50 @@
                                         </td>
                                         <td>
                                             <div class="row row-xs wd-xl-4p">
-                                                <a href="{{ route('alerts.edit', $alert->id) }}" class="action-icon">
-                                                    <i class="mdi mdi-square-edit-outline"></i> </a>
-                                                <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
-                                                <form action="{{ route('alerts.destroy', $alert->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button style="border-color:white; color:red; font-size: 0.8rem;"
-                                                        class="action-icon delete" type="submit"> <i
-                                                            class="mdi mdi-delete"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                @permission('alerts_edit')
+                                                    <a href="{{ route('alerts.edit', $alert->id) }}" class="action-icon">
+                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
+                                                    <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
+                                                    @endpermission
 
-                                @endforeach
+                                                    @permission('alerts_delete')
+                                                        <form action="{{ route('alerts.destroy', $alert->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button style="border-color:white; color:red; font-size: 0.8rem;"
+                                                                class="action-icon delete" type="submit"> <i
+                                                                    class="mdi mdi-delete"></i></button>
+                                                        </form>
+                                                        @endpermission
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-
-                            </tbody>
-                        </table>
-
-                    </div> <!-- end card body-->
-                </div> <!-- end card -->
-            </div><!-- end col-->
-        </div>
-        <!-- end row-->
+                                        @endforeach
 
 
+                                    </tbody>
+                                </table>
+
+                            </div> <!-- end card body-->
+                        </div> <!-- end card -->
+                    </div><!-- end col-->
+                </div>
+                <!-- end row-->
 
 
 
 
-    </div> <!-- container -->
-@endsection
 
-@section('script')
-    <!-- Plugins js-->
-    <script src="{{ asset('assets/libs/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/pdfmake/pdfmake.min.js') }}"></script>
 
-    <!-- Page js-->
-    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
-@endsection
+            </div> <!-- container -->
+        @endsection
+
+        @section('script')
+            <!-- Plugins js-->
+            <script src="{{ asset('assets/libs/datatables/datatables.min.js') }}"></script>
+            <script src="{{ asset('assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+
+            <!-- Page js-->
+            <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
+        @endsection

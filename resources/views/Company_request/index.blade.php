@@ -10,6 +10,8 @@
 <body class="auth-fluid-pages pb-0">
 
     <div class="auth-fluid">
+
+
         <!--Auth fluid left content -->
         <div class="auth-fluid-form-box">
             <div class="align-items-center d-flex h-100">
@@ -36,13 +38,17 @@
                     </div>
 
                     <!-- title-->
-                    <h4 class="mt-0">Sign Up</h4>
                     <p class="text-muted mb-4">Registration Company</p>
 
                     {!! NoCaptcha::renderJs() !!}
                     <!-- form -->
                     <form action="{{ route('companies_registre.store') }}" method="POST">
                         @csrf
+
+
+                        @if (Session::get('error'))
+                            <div class="text-danger font-weight-bold"> {{ Session::get('error') }}</div>
+                        @endif
                         <div class="form-group">
                             <label for="fullname">Comapny Name</label>
                             <input class="form-control" type="text" name="name_en" id="fullname"
@@ -54,11 +60,19 @@
                                 placeholder="Enter your Comapny Email">
                         </div>
                         <div class="form-group">
-                            <label for="password">Comapny Tel</label>
+                            <label for="password">Comapny phone number</label>
                             <div class="input-group input-group-merge">
                                 <input type="test" name="Tel_1" id="password" class="form-control"
-                                    placeholder="Enter your Comapny Tel">
+                                    placeholder="Enter your Comapny Tel" required>
 
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="info">additional information</label>
+                            <div class="input-group input-group-merge">
+                                <textarea name="notes" id="info" cols="30" rows="5" style="resize: none"
+                                    class="form-control"></textarea>
                             </div>
                         </div>
 
@@ -95,9 +109,7 @@
                     Great themes, good documentation with lots of customization available and sample app that really fit
                     our need. <i class="mdi mdi-format-quote-close"></i>
                 </p>
-                <h5 class="text-white">
-                    - Fadlisaad (Ubold Admin User)
-                </h5>
+
             </div> <!-- end auth-user-testimonial-->
         </div>
         <!-- end Auth fluid right content -->

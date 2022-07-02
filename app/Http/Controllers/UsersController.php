@@ -87,25 +87,25 @@ class UsersController extends Controller
 
     public function destroy($id){
        
-        try{
-            $user = User::find($id);
+        // try{
+        //     $user = User::find($id);
 
-            if(Auth::id() == $user->id){
-                return back()->with('error' , "لا يمكن ان تمسح حسابك");
-            }
-            $user->syncRoles([]); //delete relations in user_role table
+        //     if(Auth::id() == $user->id){
+        //         return back()->with('error' , "لا يمكن ان تمسح حسابك");
+        //     }
+        //     $user->syncRoles([]); //delete relations in user_role table
 
-            //delete in db
+        //     //delete in db
 
-            // $user->delete();
-            DB::table('users')->delete($user->id);
+        //     // $user->delete();
+        //     DB::table('users')->delete($user->id);
 
-            return redirect()->route('users.index')->with(['success' => 'تم حذف الموظف بنجاح']);
+        //     return redirect()->route('users.index')->with(['success' => 'تم حذف الموظف بنجاح']);
 
-        }catch(\Exception $ex){
-            return redirect()->route('users.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
+        // }catch(\Exception $ex){
+        //     return redirect()->route('users.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
 
-        }
+        // }
        
     }
 }

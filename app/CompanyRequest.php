@@ -8,7 +8,9 @@ class CompanyRequest extends Model
 {
     protected $table = 'companies_registration_requests';
 
-
+    protected $fillable = [
+        'company_id' , 'user_id' , 'notes'
+    ];
     public function company(){
         return $this->belongsTo('\App\Company');
     }

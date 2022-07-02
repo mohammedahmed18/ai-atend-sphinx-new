@@ -6,6 +6,7 @@ use App\company;
 use App\payment_details;
 use App\payment_methods;
 use App\plan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,11 +25,6 @@ class Payment_detailsController extends Controller
         return view('payment_details.index', compact('payment_details'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $payment_methods = payment_methods::all();
@@ -40,30 +36,37 @@ class Payment_detailsController extends Controller
     
     public function store(Request $req)
     {
-        $data = $req->all();
-        // dd($data);
-        $data['user_id'] = Auth::id();;
-        $payment_details = payment_details::create($data);
+        $req->validate([
+            "company_id" => "required",
+            "plan_id" => "required",
+            "paymethod_id" => "required",
+            "pay_date" => "required",
+            "start_date" => "required",
+        ]);
+        $pay = new payment_details();
+        $pay->plan_id = $req->plan_id;
+        $pay->company_id = $req->company_id;
+        $pay->paymethod_id = $req->paymethod_id;
+        $pay->pay_date = $req->pay_date;
+        $pay->start_date = $req->start_date;
+
+        $date = Carbon::createFromFormat("Y-m-d", $req->start_date);
+        $daysToAdd = Plan::find($req->plan_id)->duration_days;
+        $pay->end_date = $date->addDays($daysToAdd);
+
+        $pay->user_id = Auth::id();
+        $pay->save();
+
         return redirect()->route('payment_details.index')->with(['success' => 'تم الحفظ بنجاح']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\payment_details  $payment_details
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(payment_details $payment_details)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\payment_details  $payment_details
-     * @return \Illuminate\Http\Response
-     */
+  
     public function edit($id)
     {
         // echo $id;
@@ -75,32 +78,29 @@ class Payment_detailsController extends Controller
         return view('payment_details.update', compact('companies', 'plans', 'payment_methods', 'payment_details'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\payment_details  $payment_details
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         try {
-            $payment_details   = payment_details::findOrFail($id);
-            $user_id  = Auth::id();
-            $request['user_id'] = $user_id;
-            $payment_details->update($request->all());
+            $request->validate([
+                "company_id" => "required",
+                "paymethod_id" => "required",
+                "pay_date" => "required",
+            ]);
+            $pay = payment_details::find($id);
+            $pay->company_id = $request->company_id;
+            $pay->paymethod_id = $request->paymethod_id;
+            $pay->pay_date = $request->pay_date;
+            $pay->user_id = Auth::id();
+            
+            $pay->save();
             return redirect()->route('payment_details.index')->with(['success' => 'تم تحديث  بنجاح']);
-        } catch (\Exception $ex) {
+        } catch (\Exception $e) {
             return redirect()->route('payment_details.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
+
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\payment_details  $payment_details
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(payment_details $payment_details)
     {
         //
