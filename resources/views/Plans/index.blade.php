@@ -36,6 +36,7 @@
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Name en</th>
                                     <th>Name ar</th>
                                     <th>max employee</th>
@@ -44,7 +45,6 @@
                                     <th>create by</th>
                                     <th>Last Update by</th>
                                     <th>Active</th>
-                                    <th>edit</th>
                                 </tr>
                             </thead>
 
@@ -52,6 +52,14 @@
                             <tbody>
                                 @foreach ($plans as $plan)
                                     <tr>
+                                        <td class="px-5 py-0">
+                                            @permission('plans_edit')
+                                                <div class="row row-xs wd-xl-4p">
+                                                    <a href="{{ route('plans.edit', $plan->id) }}" class="action-icon">
+                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
+                                                </div>
+                                            @endpermission
+                                        </td>
                                         <td>{{ $plan->name_en }}</td>
                                         <td>{{ $plan->name_ar }}</td>
                                         <td>{{ $plan->max_emp }}</td>
@@ -65,17 +73,9 @@
                                             @else
                                                 <span class="badge badge-danger">Not Active</span>
                                             @endif
-                                        </td>
-                                        <td>
-                                            @permission('plans_edit')
-                                                <div class="row row-xs wd-xl-4p">
-                                                    <a href="{{ route('plans.edit', $plan->id) }}" class="action-icon">
-                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
-                                                </div>
-                                                @endpermission
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                        </td>                                        
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
 

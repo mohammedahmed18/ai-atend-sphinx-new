@@ -40,6 +40,7 @@
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Name</th>
                                     <th>details</th>
                                     <th>update/create by</th>
@@ -52,6 +53,24 @@
                             <tbody>
                                 @foreach ($payment_methods as $payment_method)
                                     <tr>
+                                        <td class="px-5 py-0">
+                                            @permission('payment_method_edit')
+                                            <div class="row row-xs wd-xl-4p">
+                                                <a href="{{ route('payment_methods.edit', $payment_method->id) }}"
+                                                    class="action-icon">
+                                                    <i class="mdi mdi-square-edit-outline"></i> </a>
+                                                <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
+                                                <form action="{{ route('payment_methods.destroy', $payment_method->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button style="border-color:white; color:red; font-size: 0.8rem;"
+                                                        class="action-icon delete" type="submit"> <i
+                                                            class="mdi mdi-delete"></i></button>
+                                                </form>
+                                            </div>
+                                            @endpermission
+                                        </td>
                                         <td>{{ $payment_method->name }}</td>
                                         <td>{{ $payment_method->details }}</td>
                                         <td>{{ $payment_method->user->name_en }}</td>
@@ -62,26 +81,8 @@
                                                 <span class="badge badge-danger">Not Active</span>
                                             @endif
                                         </td>
-                                        <td>{{ $payment_method->note }}</td>
-                                        <td>
-                                            @permission('payment_method_edit')
-                                                <div class="row row-xs wd-xl-4p">
-                                                    <a href="{{ route('payment_methods.edit', $payment_method->id) }}"
-                                                        class="action-icon">
-                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
-                                                    <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
-                                                    <form action="{{ route('payment_methods.destroy', $payment_method->id) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button style="border-color:white; color:red; font-size: 0.8rem;"
-                                                            class="action-icon delete" type="submit"> <i
-                                                                class="mdi mdi-delete"></i></button>
-                                                    </form>
-                                                </div>
-                                                @endpermission
-                                            </td>
-                                        </tr>
+                                        <td>{{ $payment_method->note }}</td>                                        
+                                    </tr>
 
                                     @endforeach
 

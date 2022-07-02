@@ -40,6 +40,7 @@
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Name (en)</th>
                                     <th>Name (ar)</th>
                                     <th>registration number</th>
@@ -62,7 +63,6 @@
                                     <th>timezone</th>
                                     <th>added/updated manually by</th>
                                     <th>Registration Num</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
 
@@ -70,6 +70,24 @@
                             <tbody>
                                 @foreach ($companies as $company)
                                     <tr>
+                                        <td class="px-5 py-0">
+                                            <div class="row row-xs wd-xl-4p">
+                                                @permission('company_edit')
+
+                                                    <a href="{{ route('companies.edit', $company->id) }}" class="action-icon">
+                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
+                                                    <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
+                                                    @endpermission
+
+                                                    {{-- <form action="{{ route('companies.destroy', $company->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button style="border-color:white; color:red; font-size: 0.8rem;"
+                                                        class="action-icon delete" type="submit"> <i
+                                                            class="mdi mdi-delete"></i></button>
+                                                </form> --}}
+                                            </div>
+                                        </td>
                                         <td>{{ $company->name_en }}</td>
                                         <td>{{ $company->name_ar }}</td>
                                         <td>{{ $company->registration_num }}</td>
@@ -117,25 +135,8 @@
                                     @endif
                                 </td>
                                 <td>{{ $company->registration_num }}</td>
-                                <td>
-                                    <div class="row row-xs wd-xl-4p">
-                                        @permission('company_edit')
-
-                                            <a href="{{ route('companies.edit', $company->id) }}" class="action-icon">
-                                                <i class="mdi mdi-square-edit-outline"></i> </a>
-                                            <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
-                                            @endpermission
-
-                                            {{-- <form action="{{ route('companies.destroy', $company->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button style="border-color:white; color:red; font-size: 0.8rem;"
-                                                class="action-icon delete" type="submit"> <i
-                                                    class="mdi mdi-delete"></i></button>
-                                        </form> --}}
-                                        </div>
-                                    </td>
-                                    </tr>
+                                
+                                </tr>
 
                                     @endforeach
 

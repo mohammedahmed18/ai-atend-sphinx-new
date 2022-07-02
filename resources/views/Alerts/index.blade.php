@@ -46,6 +46,7 @@
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Message English</th>
                                     <th>Message Arabic</th>
                                     <th>Start Date</th>
@@ -56,7 +57,6 @@
                                     <th>last update By</th>
                                     <th>IS Active</th>
                                     <th>Companies</th>
-                                    <th>Action</th>
 
                                 </tr>
                             </thead>
@@ -65,6 +65,25 @@
                             <tbody>
                                 @foreach ($alerts as $alert)
                                     <tr>
+                                        <td class="px-5 py-0">
+                                            <div class="row row-xs wd-xl-4p">
+                                                @permission('alerts_edit')
+                                                <a href="{{ route('alerts.edit', $alert->id) }}" class="action-icon">
+                                                    <i class="mdi mdi-square-edit-outline"></i> </a>
+                                                <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
+                                                @endpermission
+
+                                                @permission('alerts_delete')
+                                                <form action="{{ route('alerts.destroy', $alert->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button style="border-color:white; color:red; font-size: 0.8rem;"
+                                                        class="action-icon delete" type="submit"> <i
+                                                            class="mdi mdi-delete"></i></button>
+                                                </form>
+                                                @endpermission
+                                            </div>
+                                        </td>
                                         <td>{{ $alert->message_en }}</td>
                                         <td>{{ $alert->message_ar }}</td>
                                         <td>{{ $alert->start_date }}</td>
@@ -94,26 +113,7 @@
                                                 </tbody>
                                             </table>
                                         </td>
-                                        <td>
-                                            <div class="row row-xs wd-xl-4p">
-                                                @permission('alerts_edit')
-                                                    <a href="{{ route('alerts.edit', $alert->id) }}" class="action-icon">
-                                                        <i class="mdi mdi-square-edit-outline"></i> </a>
-                                                    <!-- <button type="button" class="btn btn-warning btn-xs waves-effect waves-light">Btn Xs</button> -->
-                                                    @endpermission
-
-                                                    @permission('alerts_delete')
-                                                        <form action="{{ route('alerts.destroy', $alert->id) }}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button style="border-color:white; color:red; font-size: 0.8rem;"
-                                                                class="action-icon delete" type="submit"> <i
-                                                                    class="mdi mdi-delete"></i></button>
-                                                        </form>
-                                                        @endpermission
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                    </tr>
 
                                         @endforeach
 
