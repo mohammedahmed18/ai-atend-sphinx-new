@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2022 at 09:38 AM
+-- Generation Time: Jul 02, 2022 at 03:25 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -341,38 +341,66 @@ CREATE TABLE `permissions` (
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `collection_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `permissions`
 --
 
-INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(59, 'payment_details_add', 'add payment details', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(60, 'payment_details_view', 'view payment details', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(61, 'payment_details_edit', 'edit payment details', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(62, 'plans_add', 'add a new plan', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(63, 'plans_edit', 'edit a plan', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(64, 'plans_view', 'view plans', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(66, 'users_add', 'add users', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(67, 'users_edit', 'edit users', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(68, 'users_view', 'view users', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(70, 'payment_method_add', 'add payment method', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(71, 'payment_method_view', 'view payment methods', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(72, 'payment_method_edit', 'edit payment method', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(74, 'alerts_add', 'add a new alert', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(75, 'alerts_view', 'view alerts', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(76, 'alerts_edit', 'edit alerts', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(78, 'alerts_delete', 'delete alerts', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(83, 'roles_permissions_add', 'add a new role', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(84, 'roles_permissions_view', 'view roles', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(85, 'roles_permissions_update', 'update roles', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(86, 'manage_landpage', 'manage landpage data', NULL, '2022-05-20 13:47:47', '2022-05-20 13:47:47'),
-(87, 'company_view', 'view companies', NULL, '2022-06-29 09:07:08', '2022-06-29 09:07:08'),
-(88, 'company_add', 'add companies', NULL, '2022-06-29 09:07:08', '2022-06-29 09:07:08'),
-(89, 'company_edit', 'view companies', NULL, '2022-06-29 09:07:08', '2022-06-29 09:07:08'),
-(91, 'users_delete', 'delete users', NULL, '2022-06-29 11:34:35', '2022-06-29 11:34:35');
+INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`, `collection_id`) VALUES
+(59, 'payment_details_add', 'add payment details', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 2),
+(60, 'payment_details_view', 'view payment details', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 2),
+(61, 'payment_details_edit', 'edit payment details', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 2),
+(62, 'plans_add', 'add a new plan', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 3),
+(63, 'plans_edit', 'edit a plan', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 3),
+(64, 'plans_view', 'view plans', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 3),
+(66, 'users_add', 'add users', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 1),
+(67, 'users_edit', 'edit users', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 1),
+(68, 'users_view', 'view users', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 1),
+(70, 'payment_method_add', 'add payment method', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 4),
+(71, 'payment_method_view', 'view payment methods', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 4),
+(72, 'payment_method_edit', 'edit payment method', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 4),
+(74, 'alerts_add', 'add a new alert', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 5),
+(75, 'alerts_view', 'view alerts', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 5),
+(76, 'alerts_edit', 'edit alerts', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 5),
+(78, 'alerts_delete', 'delete alerts', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 5),
+(83, 'roles_permissions_add', 'add a new role', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 6),
+(84, 'roles_permissions_view', 'view roles', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 6),
+(85, 'roles_permissions_update', 'update roles', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 6),
+(86, 'manage_landpage', 'manage landpage data', NULL, '2022-05-20 11:47:47', '2022-05-20 11:47:47', 7),
+(87, 'company_view', 'view companies', NULL, '2022-06-29 07:07:08', '2022-06-29 07:07:08', 8),
+(88, 'company_add', 'add companies', NULL, '2022-06-29 07:07:08', '2022-06-29 07:07:08', 8),
+(89, 'company_edit', 'edit companies', NULL, '2022-06-29 07:07:08', '2022-06-29 07:07:08', 8),
+(91, 'users_delete', 'delete users', NULL, '2022-06-29 09:34:35', '2022-06-29 09:34:35', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission_collections`
+--
+
+CREATE TABLE `permission_collections` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permission_collections`
+--
+
+INSERT INTO `permission_collections` (`id`, `label`, `created_at`, `updated_at`) VALUES
+(1, 'users', NULL, NULL),
+(2, 'payment details', NULL, NULL),
+(3, 'plans', NULL, NULL),
+(4, 'payment methods', NULL, NULL),
+(5, 'alerts', NULL, NULL),
+(6, 'roles', NULL, NULL),
+(7, 'landpage', NULL, NULL),
+(8, 'company', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -605,7 +633,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`, `note`) VALUES
-(1, 'super_admin', 'super admin', 'has all possible privileges', '2022-05-06 10:27:15', '2022-06-26 19:47:54', 'notes');
+(1, 'super_admin', 'super admin', 'has all possible privileges', '2022-05-06 10:27:15', '2022-07-02 11:14:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -784,6 +812,13 @@ ALTER TABLE `payment_methods`
 -- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permissions_collection_id_foreign` (`collection_id`);
+
+--
+-- Indexes for table `permission_collections`
+--
+ALTER TABLE `permission_collections`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -869,6 +904,12 @@ ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
+-- AUTO_INCREMENT for table `permission_collections`
+--
+ALTER TABLE `permission_collections`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `permission_role`
 --
 ALTER TABLE `permission_role`
@@ -903,7 +944,14 @@ ALTER TABLE `role_user`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD CONSTRAINT `permissions_collection_id_foreign` FOREIGN KEY (`collection_id`) REFERENCES `permission_collections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
-
-
