@@ -47,7 +47,7 @@ class payment_methodsController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => "required",
+                'name' => "required|unique:payment_methods",
                 'details' => 'required',
                 "note" => "required",
                 'isActive' => 'required'
@@ -98,16 +98,17 @@ class payment_methodsController extends Controller
         try {
 
             $data = $request->all();
+            $payment_method = payment_methods::findOrFail($id);
+
             $validator = Validator::make(
                 $data,
                 [
-                    'name' => "required",
+                    'name' => "required|unique:payment_methods,name,".$payment_method->id,
                     'details' => 'required',
                     "note" => "required",
                     'isActive' => 'required'
                 ]
             );
-            $payment_method = payment_methods::findOrFail($id);
 
             if ($validator->fails()) {
                 $err_msg = $validator->errors()->first();

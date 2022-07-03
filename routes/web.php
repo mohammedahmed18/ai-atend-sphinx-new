@@ -27,7 +27,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     ]);
 
 
+    
+    Route::get('/companies/data','CompanyController@getComanyData')->name('get_company_data');
     Route::resource('companies', 'CompanyController');
+    
     Route::resource('plans', 'PlanController');
     Route::resource('payment_methods', 'payment_methodsController');
     Route::resource('payment_details', 'Payment_detailsController');

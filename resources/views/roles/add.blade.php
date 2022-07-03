@@ -69,23 +69,62 @@
 
 
                                 <div class="mt-4 row gx-2">
-                                    @foreach ($permission_collections as $collection)
-                                        <div class="mb-4 d-flex bg-white col-md-12 row">
-                                            <span
-                                                class="font-weight-bold mr-4 col-md-2 text-primary">{{ $collection->label }}</span>
 
-                                            @foreach ($collection->permissions as $p)
-                                                <div class="mx-1">
-                                                    <div class="mb-2 checkbox checkbox-primary">
-                                                        <input id="{{ $p->id }}" type="checkbox"
-                                                            value="{{ $p->id }}" name="permissions[]">
-                                                        <label for="{{ $p->id }}">{{ $p->display_name }}</label>
-                                                    </div>
-                                                </div>
+
+                                    <div class="ml-auto p-4">
+                                        <div class="mb-2 checkbox checkbox-primary">
+                                            <input type="checkbox" id="{{ $permission_collections }}-selectall"
+                                                onchange="toggleSelectAll(event, JSON.stringify('{{ $permission_collections }}') )">
+                                            <label for="{{ $permission_collections }}-selectall">select
+                                                all</label>
+                                        </div>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($permission_collections as $collection)
+                                                <tr>
+                                                    <td>
+                                                        <span
+                                                            class="font-weight-bold mr-4 col-md-2 text-primary">{{ $collection->label }}</span>
+
+                                                    </td>
+                                                    <td>
+                                                        @foreach ($collection->permissions as $p)
+                                                            <div class="mx-1">
+
+                                                                <div class="mb-2 checkbox checkbox-primary">
+                                                                    <input id="p-{{ $p->id }}" type="checkbox"
+                                                                        value="{{ $p->id }}" name="permissions[]">
+                                                                    <label
+                                                                        for="p-{{ $p->id }}">{{ $p->display_name }}</label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="ml-1">
+                                                            <div class="mb-2 checkbox checkbox-primary">
+                                                                <input id="{{ $collection->id }}-selectall"
+                                                                    type="checkbox" name="permissions[]"
+                                                                    onchange="toggleSelectCollection( JSON.stringify('{{ $collection }}') )">
+                                                                <label for="{{ $collection->id }}-selectall">select
+                                                                    all</label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
                                             @endforeach
-                                        </div> <!-- end col-->
+                                        </tbody>
+                                    </table>
 
-                                    @endforeach
 
                                 </div>
                                 <!-- end row-->
@@ -122,4 +161,24 @@
 
     <!-- Page js-->
     <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
+    <script>
+        const toggleSelectCollection = (collection) => {
+            const collection_json = JSON.parse(JSON.parse(collection))
+            collection_json.permissions.forEach(p => {
+                const permission_ckeckbox = $('#p-' + p.id)
+                permission_ckeckbox.attr('checked', !permission_ckeckbox.attr("checked"))
+            });
+        }
+        const toggleSelectAll = (event, collections) => {
+            const collections_json = JSON.parse(JSON.parse(collections))
+            collections_json.forEach(c => {
+                c.permissions.forEach(p => {
+                    const permission_ckeckbox = $('#p-' + p.id)
+                    permission_ckeckbox.attr('checked', !permission_ckeckbox.attr("checked"))
+                });
+
+            })
+        }
+
+    </script>
 @endsection

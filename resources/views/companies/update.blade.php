@@ -149,7 +149,7 @@
                             </div>
 
 
-                            <div class="form-group my-2">
+                            {{-- <div class="form-group my-2">
                                 <label>plan</label>
                                 <select name="current_plan_id" id="" class="form-control">
 
@@ -164,19 +164,16 @@
                                         @endif
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
 
 
-                            <input hidden type="text" name="lat" class="form-control" id="lat" placeholder="Latitude">
+                            <input hidden type="text" value="{{ $company->lat }}" name="lat" class="form-control"
+                                id="lat" placeholder="Latitude">
 
-                            <input hidden type="text" name="long" class="form-control" id="lng" placeholder="Longituide">
+                            <input hidden type="text" value="{{ $company->long }}" name="long" class="form-control"
+                                id="long" placeholder="Longituide">
 
-                            <input hidden type="text" value="{{ $company->lat }}" name="lat_old" class="form-control"
-                                id="lat_old" placeholder="Latitude">
-
-                            <input hidden type="text" value="{{ $company->long }}" name="long_old" class="form-control"
-                                id="lng_old" placeholder="Longituide">
 
                             <div class="my-4">
                                 <div id="map" style="height: 500px"></div>
@@ -216,10 +213,9 @@
         </script>
         <script>
             window.onload = function() {
-                var x = document.getElementById('lat_old').value;
-                var y = document.getElementById('lng_old').value;
-                $('#lat').val = document.getElementById('lat_old').value;
-                $('#lng').val = document.getElementById('lng_old').value;
+
+                x = document.getElementById('lat').value;
+                y = document.getElementById('long').value;
                 var latlng = new google.maps.LatLng(x, y);
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: latlng,
@@ -236,7 +232,7 @@
                     var lat = a.latLng.lat();
                     var lng = a.latLng.lng();
                     $('#lat').val(lat)
-                    $('#lng').val(lng)
+                    $('#long').val(lng)
 
                 });
             };

@@ -142,7 +142,7 @@
 
                                                                 @permission('company_add', 'company_edit')
                                                                     <li>
-                                                                        <a href="{{ route('companies_requests.index') }}">Companies requests</a>
+                                                                        <a href="{{ route('companies_requests.index') }}">Companies requests (websites)</a>
                                                                     </li>
                                                                     @endpermission
 
@@ -229,10 +229,19 @@
                                                                                 </li>
                                                                                 {{-- end of paymentdetails --}}
 
+
                                                                             </ul>
 
                                                                         </div>
                                                                         <!-- End Sidebar -->
+
+
+
+                                                                        {{-- End of Assign Appointment --}}
+
+
+
+
 
                                                                         <div class="clearfix"></div>
 

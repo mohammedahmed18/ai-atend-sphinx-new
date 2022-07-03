@@ -35,7 +35,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $permission_collections = PermissionCollection::orderBy('label')->get();
+        $permission_collections = PermissionCollection::orderBy('label')->with('permissions')->get();
         return view('roles.add', compact('permission_collections'));
     }
 
@@ -88,17 +88,10 @@ class RolesController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
         $role = Role::FindOrFail($id);
-        $permission_collections = PermissionCollection::orderBy('label')->get();
+        $permission_collections = PermissionCollection::orderBy('label')->with('permissions')->get();
         return view('roles.edit', compact('role', 'permission_collections'));
     }
 
@@ -113,7 +106,11 @@ class RolesController extends Controller
     {
         try {
             $role = Role::findOrFail($id);
-
+            if ($role->name == 'super_admin') {
+                $role->update(['note' => $request->note]);
+                return redirect()->route('roles.index')->with(['success' => 'تم تحديث المستخدم بنجاح']);
+            }
+            
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -125,6 +122,7 @@ class RolesController extends Controller
                     "permissions.required" => 'يجب اختيار على الاقل تصريح واحد'
                 ]
             );
+
             if ($validator->fails()) {
                 $err_msg = $validator->errors()->first();
                 return back()->with('error', $err_msg)->withInput();

@@ -28,7 +28,7 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $companies = company::all();
+        $companies = company::with(['plan'])->orderBy('id' , 'desc')->get();
         return view('companies.index', compact('companies'));
     }
 
@@ -51,29 +51,28 @@ class CompanyController extends Controller
             "name_en" => "required|unique:companies",
             "name_ar" => "required|unique:companies",
             "email" => "required|email|unique:companies",
-            "tel1" => "required",
-            "tel2" => "",
-            "tel3" => "",
+            "Tel_1" => "required",
+            "Tel_2" => "",
+            "Tel_3" => "",
             "website" => "",
-            "address" => "required",
+            // "address" => "required",
             "long" => "required",
             "lat" => "required",
-            "commercial_record" => "required|url",
-            "tax_card" => "required|url",
-            "timezone" => "required",
+            "commercial_record" => "required",
+            "tax_card" => "required",
+            // "timezone" => "required",
             "note" => "",
-            "plan_id" => "required",
-            "pay_method" => "required",
-            "pay_date" => "required",
-            "start_date" => "required",
+            // "current_plan_id" => "required",
+            // "pay_method" => "required",
+            // "pay_date" => "required",
+            // "start_date" => "required",
         ]);
 
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return back()->withInput()->with('error', $error);
         }
-
-        
+         
         $data = $req->all();
         $data['user_id'] = Auth::id();
         $data['registration_num'] = time() . mt_rand(300, 700);
@@ -148,21 +147,21 @@ class CompanyController extends Controller
                 "name_en" => "required|unique:companies,name_en,".$company->id,
                 "name_ar" => "required|unique:companies,name_ar,".$company->id,
                 "email" => "required|email|unique:companies,email,".$company->id,
-                "tel1" => "required",
-                "tel2" => "",
-                "tel3" => "",
+                "Tel_1" => "required",
+                "Tel_2" => "",
+                "Tel_3" => "",
                 "website" => "",
-                "address" => "required",
+                // "address" => "required",
                 "long" => "required",
                 "lat" => "required",
-                "commercial_record" => "required|url",
-                "tax_card" => "required|url",
-                "timezone" => "required",
+                "commercial_record" => "required",
+                "tax_card" => "required",
+                // "timezone" => "required",
                 "note" => "",
-                "plan_id" => "required",
-                "pay_method" => "required",
-                "pay_date" => "required",
-                "start_date" => "required",
+                "current_plan_id" => "required",
+                // "pay_method" => "required",
+                // "pay_date" => "required",
+                // "start_date" => "required",
             ]);
     
             if ($validator->fails()) {
@@ -242,5 +241,17 @@ class CompanyController extends Controller
         Auth::guard('company')->login($company);
         return redirect('/company/home');
 
-    }   
+    }
+
+    public function getComanyData(Request $req){
+        $id = $req->id;
+        if(!$id){
+            return response()->json(['error' => 'id not provided'] , 401);
+        }
+        $company = company::find($id);
+        if(! $company){
+            return response()->json(['error' => 'compnay is not found'] , 404);
+        }
+        return response()->json($company);
+    }
 }
