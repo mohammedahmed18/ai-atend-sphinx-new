@@ -18,17 +18,17 @@ class AlertController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:alerts_add' , ['only' => ['create' , 'store']]);
-        $this->middleware('permission:alerts_view' , ['only' => ['index']]);
-        $this->middleware('permission:alerts_edit' , ['only' => ['edit' , 'update']]);
-        $this->middleware('permission:alerts_delete' , ['only' => ['destroy']]);
+        $this->middleware('permission:alerts_add', ['only' => ['create', 'store']]);
+        $this->middleware('permission:alerts_view', ['only' => ['index']]);
+        $this->middleware('permission:alerts_edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:alerts_delete', ['only' => ['destroy']]);
     }
 
     public function index()
     {
         //
         $alerts = Alert::all();
-        return view("alerts.index",compact('alerts'));
+        return view("alerts.index", compact('alerts'));
     }
 
     /**
@@ -56,7 +56,6 @@ class AlertController extends Controller
                 'message_en' => 'required',
                 "message_ar" => 'required',
                 'type' => 'required',
-                'is_activate' => 'required'
             ]
         );
         if ($validator->fails()) {
@@ -90,9 +89,9 @@ class AlertController extends Controller
     public function edit($id)
     {
         $alert = Alert::FindOrFail($id);
-        $companies = Company::where('isActive' , 1)->get();
+        $companies = Company::where('isActive', 1)->get();
 
-        return view('alerts.update', compact('alert' , 'companies'));
+        return view('alerts.update', compact('alert', 'companies'));
     }
 
     /**
@@ -113,7 +112,6 @@ class AlertController extends Controller
                     'message_en' => 'required',
                     "message_ar" => 'required',
                     'type' => 'required',
-                    'is_activate' => 'required'
                 ]
             );
             if ($validator->fails()) {
@@ -138,14 +136,12 @@ class AlertController extends Controller
      */
     public function destroy($id)
     {
-        try{
+        try {
             $alerts = Alert::findOrFail($id);
             $alerts->delete();
             return redirect()->route('alerts.index')->with(['success' => 'Delete this Alert Success']);
-
-        }catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return redirect()->route('alerts.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
-
         }
     }
 }

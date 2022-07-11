@@ -72,23 +72,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="name" class="col-form-label">start date <span
-                                            class="text-danger">*</span></label>
-                                    <input type="date" name="start_date" value="{{ $alert->start_date }}"
-                                        class="form-control" id="name" placeholder="start date...">
-                                </div>
-
-
-                                <div class="form-group col-md-6">
-                                    <label for="name" class="col-form-label">end date <span
-                                            class="text-danger">*</span></label>
-                                    <input type="date" name="end_date" value="{{ $alert->end_date }}"
-                                        class="form-control" id="name" placeholder="start date...">
-                                </div>
-
-                            </div>
+                      
                             <div class="form-group">
                                 <label>alert type <span class="text-danger">*</span></label>
                                 <select name="type" class="form-control">
@@ -100,14 +84,6 @@
                             </div>
 
 
-                            <div class="form-group">
-                                <label>alert status <span class="text-danger">*</span></label>
-
-                                <select name="is_activate" class="form-control">
-                                    <option @if ($alert->is_activate) selected @endif value="1">Active</option>
-                                    <option @if (!$alert->is_activate) selected @endif value="0">inactive</option>
-                                </select>
-                            </div>
 
                             <div class="form-group shadow-textarea">
                                 <label for="exampleFormControlTextarea6">Note</label>

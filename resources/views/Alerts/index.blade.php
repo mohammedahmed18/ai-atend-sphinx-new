@@ -49,13 +49,10 @@
                                     <th></th>
                                     <th>Message English</th>
                                     <th>Message Arabic</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
                                     <th>Created Date</th>
                                     <th>Modify Data</th>
                                     <th>Message Type</th>
                                     <th>last update By</th>
-                                    <th>IS Active</th>
                                     <th>Companies</th>
 
                                 </tr>
@@ -86,8 +83,6 @@
                                         </td>
                                         <td>{{ $alert->message_en }}</td>
                                         <td>{{ $alert->message_ar }}</td>
-                                        <td>{{ $alert->start_date }}</td>
-                                        <td>{{ $alert->end_date }}</td>
                                         <td>{{ $alert->created_at }}</td>
                                         <td>{{ $alert->updated_at }}</td>
                                         <td>{{ $alert->type }}</td>
@@ -97,11 +92,7 @@
                                                 {{ $alert->user->name_en }}
                                             @endif
                                         </td>
-                                        @if ($alert->is_activate)
-                                            <td>Active</td>
-                                        @else
-                                            <td>Inactive</td>
-                                        @endif
+                                    
                                         <td>
                                             <table class="table">
                                                 <tbody>

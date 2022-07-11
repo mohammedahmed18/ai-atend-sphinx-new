@@ -60,14 +60,30 @@
                             <div class="form-group">
                                 <label for="inputBranch" class="col-form-label">Alert *</label>
                                 <select name="alert_id" id="inputBranch" class="selectize-drop-header"
-                                    placeholder="Select a branch..." required>
+                                    placeholder="Select an alert..." required>
                                     @foreach ($alerts as $alert)
                                         <option value="{{ $alert->id }}">{{ $alert->message_en }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">start date <span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" name="start_date" 
+                                        class="form-control" id="name" placeholder="start date...">
+                                </div>
 
+
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">end date <span
+                                            class="text-danger">*</span></label>
+                                    <input type="date" name="end_date" 
+                                        class="form-control" id="name" placeholder="start date...">
+                                </div>
+
+                            </div>
 
 
                             <div class="form-group">

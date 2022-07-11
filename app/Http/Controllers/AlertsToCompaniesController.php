@@ -13,19 +13,21 @@ class AlertsToCompaniesController extends Controller
 
     public function create()
     {
-        $companies = Company::where('isActive' , 1)->get();
-        $alerts = Alert::where('is_activate' , 1)->get();
+        $companies = Company::where('isActive', 1)->get();
+        $alerts = Alert::all();
 
-        return view('alerts_to_companies.create' , compact('companies' , 'alerts'));
-
+        return view('alerts_to_companies.create', compact('companies', 'alerts'));
     }
 
-   
+
     public function store(Request $request)
     {
         //
         $request->validate([
             'alert_id' => 'required',
+            'companies' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
         ]);
 
 
@@ -34,18 +36,18 @@ class AlertsToCompaniesController extends Controller
         $data  = [];
 
         foreach ($companies as $comapny_id) {
-            
-            array_push($data , [
+
+            array_push($data, [
                 'alert_id' => $alert_id,
                 'company_id' => $comapny_id,
-                'user_id' => Auth::id()
+                'user_id' => Auth::id(),
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
             ]);
-    
         }
 
         AlertToCompany::insert($data);
-        return redirect()->route('alerts.index')->with('success' , 'تم ارسال الانذار بنجاح');
-    
+        return redirect()->route('alerts.index')->with('success', 'تم ارسال الانذار بنجاح');
     }
 
     public function edit($id)
@@ -53,13 +55,13 @@ class AlertsToCompaniesController extends Controller
         //
     }
 
-   
+
     public function update(Request $request, $id)
     {
         //
     }
 
-   
+
     public function destroy($id)
     {
         //
