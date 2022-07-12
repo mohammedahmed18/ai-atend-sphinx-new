@@ -66,7 +66,7 @@ class Payment_detailsController extends Controller
 
         $date = Carbon::createFromFormat("Y-m-d", $req->start_date);
         $daysToAdd = Plan::find($req->plan_id)->duration_days;
-        $pay->end_date = $date->addDays($daysToAdd);
+        $pay->end_date = $date->addDays($daysToAdd + 1);
 
         $pay->user_id = Auth::id();
         $pay->save();

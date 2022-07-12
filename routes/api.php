@@ -17,5 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('test', 'api\AlertsController@try')->name('test');
-Route::get('alert', 'api\AlertsController@send_to_comapany')->name('alert');
+Route::get('getData', 'api\AlertsController@send_to_comapany');

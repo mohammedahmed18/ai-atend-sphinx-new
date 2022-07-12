@@ -79,7 +79,7 @@
                                     <option @if ($alert->type == 'info') selected @endif value="1">info</option>
                                     <option @if ($alert->type == 'success') selected @endif value="2">success</option>
                                     <option @if ($alert->type == 'warning') selected @endif value="3">warning</option>
-                                    <option @if ($alert->type == 'error') selected @endif value="4">error</option>
+                                    <option @if ($alert->type == 'danger') selected @endif value="4">danger</option>
                                 </select>
                             </div>
 

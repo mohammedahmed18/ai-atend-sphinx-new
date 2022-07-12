@@ -76,7 +76,7 @@
                                     <option value="1">info</option>
                                     <option value="2">success</option>
                                     <option value="3">warning</option>
-                                    <option value="4">error</option>
+                                    <option value="4">danger</option>
                                 </select>
                             </div>
 
