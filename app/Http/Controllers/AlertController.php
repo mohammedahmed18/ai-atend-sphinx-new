@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AlertController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
@@ -26,30 +21,19 @@ class AlertController extends Controller
 
     public function index()
     {
-        //
         $alerts = Alert::all();
         return view("alerts.index", compact('alerts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         return view('alerts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $req)
     {
-
         $validator = Validator::make(
             $req->all(),
             [
@@ -69,23 +53,12 @@ class AlertController extends Controller
         return redirect()->route('alerts.index')->with(['success' => 'تم الحفظ بنجاح']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Alert  $alert
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Alert $alert)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Alert  $alert
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $alert = Alert::FindOrFail($id);
@@ -94,13 +67,7 @@ class AlertController extends Controller
         return view('alerts.update', compact('alert', 'companies'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Alert  $alert
-     * @return \Illuminate\Http\Response
-     */
+  
     public function update(Request $request, $id)
     {
         try {
@@ -128,18 +95,13 @@ class AlertController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Alert  $alert
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         try {
             $alerts = Alert::findOrFail($id);
+            $alerts->companies()->detach();
             $alerts->delete();
-            return redirect()->route('alerts.index')->with(['success' => 'Delete this Alert Success']);
+            return redirect()->route('alerts.index')->with(['success' => 'تم مسح الانذار بنجاح']);
         } catch (\Exception $ex) {
             return redirect()->route('alerts.index')->with(['error' => 'هناك خطأ برجاء المحاولة ثانيا']);
         }

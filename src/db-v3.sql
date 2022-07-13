@@ -1,16 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2022 at 04:03 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Jul 12, 2022 at 02:54 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `ai-attend-sphinx2`
@@ -29,9 +34,16 @@ CREATE TABLE `alerts` (
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `type` enum('info','success','warning','danger') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci
+  `type` enum('info','success','warning','error') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `alerts`
+--
+
+INSERT INTO `alerts` (`id`, `message_en`, `message_ar`, `user_id`, `created_at`, `updated_at`, `type`, `note`) VALUES
+(3, 'give me your moneeey', 'اعطني مااالك', 1, '2022-07-11 14:47:06', '2022-07-11 14:47:06', 'error', NULL);
 
 -- --------------------------------------------------------
 
@@ -45,11 +57,18 @@ CREATE TABLE `alerts_to_companies` (
   `company_id` bigint(20) UNSIGNED NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
-  `is_activate` tinyint(1) NOT NULL DEFAULT '1',
+  `is_activate` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `alerts_to_companies`
+--
+
+INSERT INTO `alerts_to_companies` (`id`, `alert_id`, `company_id`, `start_date`, `end_date`, `is_activate`, `created_at`, `updated_at`, `user_id`) VALUES
+(5, 3, 34, '2022-07-11', '2022-07-23', 1, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -73,7 +92,7 @@ CREATE TABLE `companies` (
   `logo_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '/images/logo.png',
   `tax_card` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `isActive` tinyint(1) DEFAULT '0',
+  `isActive` tinyint(1) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `current_plan_id` bigint(20) UNSIGNED DEFAULT NULL,
@@ -91,7 +110,7 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`id`, `name_en`, `name_ar`, `Tel_1`, `Tel_2`, `Tel_3`, `email`, `website`, `main_address`, `long`, `lat`, `commercial_record`, `logo_url`, `tax_card`, `note`, `isActive`, `created_at`, `updated_at`, `current_plan_id`, `timezone`, `epm_username`, `user_id`, `registration_num`, `domain_url`, `commercial_record_file`, `tax_card_file`) VALUES
-(34, 'we', 'mohammed ahsafasfsamed', NULL, NULL, NULL, 'mohammed18200118@gmail.com', NULL, 'address', '31.24', '30.04', NULL, '/images/logo.png', NULL, NULL, 1, '2022-07-01 20:13:15', '2022-07-11 13:17:32', 1, NULL, NULL, 1, '1656720795564', NULL, NULL, NULL);
+(34, 'we', 'mohammed ahsafasfsamed', NULL, NULL, NULL, 'mohammed18200118@gmail.com', NULL, 'address', '31.24', '30.04', NULL, '/images/logo.png', NULL, NULL, 1, '2022-07-01 22:13:15', '2022-07-11 15:17:32', 1, NULL, NULL, 1, '1656720795564', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,7 +141,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -303,7 +322,7 @@ CREATE TABLE `payment_methods` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `details` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `isActive` tinyint(1) NOT NULL DEFAULT '0',
+  `isActive` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `update_user_id` bigint(20) UNSIGNED NOT NULL
@@ -474,7 +493,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -542,7 +561,7 @@ CREATE TABLE `plans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `activate` tinyint(1) DEFAULT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci
+  `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -696,7 +715,7 @@ CREATE TABLE `terms` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `isActive` tinyint(1) NOT NULL DEFAULT '1',
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `body_ar` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -732,8 +751,8 @@ CREATE TABLE `users` (
   `Tel_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Tel_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `isActive` tinyint(1) NOT NULL DEFAULT '1',
-  `note` text COLLATE utf8mb4_unicode_ci
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
+  `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -856,13 +875,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alerts`
 --
 ALTER TABLE `alerts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `alerts_to_companies`
 --
 ALTER TABLE `alerts_to_companies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -946,3 +965,7 @@ ALTER TABLE `users`
 ALTER TABLE `permissions`
   ADD CONSTRAINT `permissions_collection_id_foreign` FOREIGN KEY (`collection_id`) REFERENCES `permission_collections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

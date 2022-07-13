@@ -177,7 +177,7 @@ return [
          * 
          */
 
-
+        Jerry\JWT\Providers\JWTProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
