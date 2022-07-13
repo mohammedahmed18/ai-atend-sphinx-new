@@ -16,9 +16,9 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                            <li class="breadcrumb-item active">Elements</li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard/companies">Companies</a></li>
+                            <li class="breadcrumb-item active">add company</li>
                         </ol>
                     </div>
                     <h4 class="page-title">Add company</h4>
@@ -33,115 +33,127 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data"
+                            class="needs-validation" novalidate>
                             @csrf
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Name En (*)</label>
-                                <input type="name" name="name_en" class="form-control" id="name" placeholder="Name en">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Name En (*)</label>
+                                    <input type="name" name="name_en" class="form-control" id="name" placeholder="Name en"
+                                        required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Name ar (*)</label>
+                                    <input type="name" name="name_ar" class="form-control" id="name" placeholder="Name ar"
+                                        required>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Name ar (*)</label>
-                                <input type="name" name="name_ar" class="form-control" id="name" placeholder="Name ar">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Tel 1 (*)</label>
+                                    <input type="name" name="Tel_1" class="form-control" id="name" placeholder="tel 1 ..."
+                                        required>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Tel 2 </label>
+                                    <input type="name" name="Tel_2" class="form-control" id="name" placeholder="tel 2 ...">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Tel 3 </label>
+                                    <input type="name" name="Tel_3" class="form-control" id="name" placeholder="tel 3 ...">
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Tel 1 (*)</label>
-                                <input type="name" name="Tel_1" class="form-control" id="name" placeholder="tel 1 ...">
-                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">email (*)</label>
+                                    <input type="name" name="email" class="form-control" id="name" placeholder="email ..."
+                                        required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Tel 2 </label>
-                                <input type="name" name="Tel_2" class="form-control" id="name" placeholder="tel 2 ...">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Tel 3 </label>
-                                <input type="name" name="Tel_3" class="form-control" id="name" placeholder="tel 3 ...">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">email</label>
-                                <input type="name" name="email" class="form-control" id="name" placeholder="email ...">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">website</label>
-                                <input type="name" name="website" class="form-control" id="name" placeholder="website ...">
-                            </div>
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">website</label>
+                                    <input type="name" name="website" class="form-control" id="name"
+                                        placeholder="website ...">
+                                </div>
 
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Main Address</label>
-                                <input type="name" name="main_address" class="form-control" id="name"
-                                    placeholder="mai ddress ...">
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Commercial Record</label>
-                                <input type="name" name="commercial_record" class="form-control" id="name"
-                                    placeholder="Commercial Record ...">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="commercial_file_input" class="col-form-label">Commercial Record file</label>
-                                <input type="file" name="commercial_record_file" class="form-control"
-                                    id="commercial_file_input">
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Main Address</label>
+                                    <input type="name" name="main_address" class="form-control" id="name"
+                                        placeholder="mai ddress ...">
+                                </div>
                             </div>
 
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">tax_card</label>
-                                <input type="name" name="tax_card" class="form-control" id="name"
-                                    placeholder="tax_card ...">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Commercial Record</label>
+                                    <input type="name" name="commercial_record" class="form-control" id="name"
+                                        placeholder="Commercial Record ...">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="commercial_file_input" class="col-form-label">Commercial Record file</label>
+                                    <input type="file" name="commercial_record_file" class="form-control"
+                                        id="commercial_file_input">
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="tax_card_input" class="col-form-label">Tax card file</label>
-                                <input type="file" name="tax_card_file" class="form-control" id="tax_card_input">
-                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">tax_card</label>
+                                    <input type="name" name="tax_card" class="form-control" id="name"
+                                        placeholder="tax_card ...">
+                                </div>
 
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Time-Zone</label>
-                                <input type="text" name="timezone" id="input" class="form-control" id="name"
-                                    placeholder="timezone ...">
-                                {{-- <input type="text" id="input" class="w-full input bg-base-300/50"  /> --}}
-                                <ul id="suggestions" style="max-height: 200px!important;"
-                                    class="absolute block w-full px-4 overflow-auto bg-white shadow-lg rounded-box">
-                                </ul>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Action</label>
-                                <select name="isActive" id="" style="width: 100%" class="form-control">
-                                    <option value="">Select The Active</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">plans</label>
-                                <select name="current_plan_id" id="" style="width: 100%" class="form-control">
-                                    <option value="">Select The Plans</option>
-                                    @foreach ($plans as $plan)
-                                        @if ($plan->activate)
-                                            <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                                <div class="form-group col-md-6">
+                                    <label for="tax_card_input" class="col-form-label">Tax card file</label>
+                                    <input type="file" name="tax_card_file" class="form-control" id="tax_card_input">
+                                </div>
                             </div>
 
 
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Time-Zone</label>
+                                    <input type="text" name="timezone" id="input" class="form-control" id="name"
+                                        placeholder="timezone ...">
+                                    {{-- <input type="text" id="input" class="w-full input bg-base-300/50"  /> --}}
+                                    <ul id="suggestions" style="max-height: 200px!important;"
+                                        class="absolute block w-full px-4 overflow-auto bg-white shadow-lg rounded-box">
+                                    </ul>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Action (*)</label>
+                                    <select name="isActive" id="" style="width: 100%" class="form-control" required>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            {{-- <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">plan (*)</label>
+                                    <select name="current_plan_id" id="" style="width: 100%" class="form-control" required>
+                                        <option disabled>Select The a plan</option>
+                                        @foreach ($plans as $plan)
+                                            @if ($plan->activate)
+                                                <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div> --}}
 
                             <input hidden type="text" name="lat" class="form-control" id="lat" placeholder="Latitude">
 
                             <input hidden type="text" name="long" class="form-control" id="lng" placeholder="Longituide">
 
-                            <div class="my-4">
+                            <div class="my-1">
                                 <div id="map" style="height: 500px"></div>
                             </div>
 

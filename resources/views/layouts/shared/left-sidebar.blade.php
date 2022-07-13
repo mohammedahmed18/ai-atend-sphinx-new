@@ -235,13 +235,7 @@
                                                                         </div>
                                                                         <!-- End Sidebar -->
 
-
-
                                                                         {{-- End of Assign Appointment --}}
-
-
-
-
 
                                                                         <div class="clearfix"></div>
 

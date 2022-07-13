@@ -16,12 +16,13 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                            <li class="breadcrumb-item active">Elements</li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard/companies">Companies</a></li>
+                            <li class="breadcrumb-item active">edit company "{{ $company->name_en }}"</li>
                         </ol>
+
                     </div>
-                    <h4 class="page-title">Add company</h4>
+                    <h4 class="page-title">edit company"{{ $company->name_en }}"</h4>
                 </div>
             </div>
         </div>
@@ -32,141 +33,129 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">companies</h4>
-
                         <form action="{{ route('companies.update', $company->id) }}" method="post"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" class="needs-validation" novalidate>
 
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Name En (*)</label>
-                                <input type="name" value="{{ $company->name_en }}" name="name_en" class="form-control"
-                                    id="name" placeholder="Name en">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Name En (*)</label>
+                                    <input type="name" value="{{ $company->name_en }}" name="name_en" class="form-control"
+                                        id="name" placeholder="Name en" required>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Name ar (*)</label>
+                                    <input type="name" value="{{ $company->name_ar }}" name="name_ar" class="form-control"
+                                        required id="name" placeholder="Name ar">
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Name ar (*)</label>
-                                <input type="name" value="{{ $company->name_ar }}" name="name_ar" class="form-control"
-                                    id="name" placeholder="Name ar">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Tel 1 (*)</label>
+                                    <input type="name" value="{{ $company->Tel_1 }}" name="Tel_1" class="form-control"
+                                        id="name" placeholder="tel 1 ..." required>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Tel 2 </label>
+                                    <input type="name" value="{{ $company->Tel_2 }}" name="Tel_2" class="form-control"
+                                        id="name" placeholder="tel 2 ...">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Tel 3 </label>
+                                    <input type="name" value="{{ $company->Tel_3 }}" name="Tel_3" class="form-control"
+                                        id="name" placeholder="tel 3 ...">
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Tel 1 (*)</label>
-                                <input type="name" value="{{ $company->Tel_1 }}" name="Tel_1" class="form-control"
-                                    id="name" placeholder="tel 1 ...">
-                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">email (*)</label>
+                                    <input type="name" value="{{ $company->email }}" name="email" class="form-control"
+                                        id="name" placeholder="email ..." required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Tel 2 </label>
-                                <input type="name" value="{{ $company->Tel_2 }}" name="Tel_2" class="form-control"
-                                    id="name" placeholder="tel 2 ...">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Tel 3 </label>
-                                <input type="name" value="{{ $company->Tel_3 }}" name="Tel_3" class="form-control"
-                                    id="name" placeholder="tel 3 ...">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">email</label>
-                                <input type="name" value="{{ $company->email }}" name="email" class="form-control"
-                                    id="name" placeholder="email ...">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">website</label>
-                                <input type="name" value="{{ $company->website }}" name="website" class="form-control"
-                                    id="name" placeholder="website ...">
-                            </div>
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">website</label>
+                                    <input type="name" value="{{ $company->website }}" name="website"
+                                        class="form-control" id="name" placeholder="website ...">
+                                </div>
 
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Main Address</label>
-                                <input type="name" value="{{ $company->main_address }}" name="main_address"
-                                    class="form-control" id="name" placeholder="mai ddress ...">
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Commercial Record</label>
-                                <input type="name" value="{{ $company->commercial_record }}" name="commercial_record"
-                                    class="form-control" id="name" placeholder="Commercial Record ...">
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="commercial_file_input" class="col-form-label">Commercial Record file</label>
-                                @if ($company->commercial_record_file)
-                                    <span class="text-info my-1">there is already a file for this field , choosing a new
-                                        file will delete the previous one and upload the new one</span>
-                                @endif
-                                <input type="file" name="commercial_record_file" class="form-control"
-                                    id="commercial_file_input">
+                                <div class="form-group col-md-4">
+                                    <label for="name" class="col-form-label">Main Address</label>
+                                    <input type="name" value="{{ $company->main_address }}" name="main_address"
+                                        class="form-control" id="name" placeholder="mai ddress ...">
+                                </div>
                             </div>
 
 
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Commercial Record</label>
+                                    <input type="name" value="{{ $company->commercial_record }}" name="commercial_record"
+                                        class="form-control" id="name" placeholder="Commercial Record ...">
+                                </div>
 
-                            <div class="form-group">
 
-                                <label for="name" class="col-form-label">tax_card</label>
-                                <input type="name" value="{{ $company->tax_card }}" name="tax_card" class="form-control"
-                                    id="name" placeholder="tax_card ...">
+                                <div class="form-group col-md-6">
+
+                                    <label for="commercial_file_input" class="col-form-label">Commercial Record file</label>
+                                    @if ($company->commercial_record_file)
+                                        <span class="text-info my-1">there is already a file for this field , choosing a new
+                                            file will delete the previous one and upload the new one</span>
+                                    @endif
+                                    <input type="file" name="commercial_record_file" class="form-control"
+                                        id="commercial_file_input">
+                                </div>
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="row">
+                                <div class="form-group col-md-6">
 
-                                <label for="tax_card_input" class="col-form-label">Tax card file</label>
-                                @if ($company->tax_card_file)
-                                    <span class="text-info my-1">there is already a file for this field , choosing a new
-                                        file will delete the previous one and upload the new one</span>
-                                @endif
-                                <input type="file" name="tax_card_file" class="form-control" id="tax_card_input">
+                                    <label for="name" class="col-form-label">tax_card</label>
+                                    <input type="name" value="{{ $company->tax_card }}" name="tax_card"
+                                        class="form-control" id="name" placeholder="tax_card ...">
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+
+                                    <label for="tax_card_input" class="col-form-label">Tax card file</label>
+                                    @if ($company->tax_card_file)
+                                        <span class="text-info my-1">there is already a file for this field , choosing a new
+                                            file will delete the previous one and upload the new one</span>
+                                    @endif
+                                    <input type="file" name="tax_card_file" class="form-control" id="tax_card_input">
+                                </div>
                             </div>
 
 
 
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">Time-Zone</label>
-                                <input type="text" value="{{ $company->timezone }}" name="timezone" id="input"
-                                    class="form-control" id="name" placeholder="timezone ...">
-                                {{-- <input type="text" id="input" class="w-full input bg-base-300/50"  /> --}}
-                                <ul id="suggestions" style="max-height: 200px!important;"
-                                    class="absolute block w-full px-4 overflow-auto bg-white shadow-lg rounded-box">
-                                </ul>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="name" class="col-form-label">Time-Zone</label>
+                                    <input type="text" value="{{ $company->timezone }}" name="timezone" id="input"
+                                        class="form-control" id="name" placeholder="timezone ...">
+                                    {{-- <input type="text" id="input" class="w-full input bg-base-300/50"  /> --}}
+                                    <ul id="suggestions" style="max-height: 200px!important;"
+                                        class="absolute block w-full px-4 overflow-auto bg-white shadow-lg rounded-box">
+                                    </ul>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Action</label>
+                                    <select name="isActive" id="" class="form-control" style="width: 100%" required>
+                                        <option @if ($company->isActive) selected @endif value="1">Active</option>
+                                        <option @if (!$company->isActive) selected @endif value="0">inactive</option>
+                                    </select>
+                                </div>
                             </div>
-
-                            <div class="form-group my-2">
-                                <label>Active</label>
-                                <select name="isActive" id="" class="form-control" style="width: 100%">
-                                    <option @if ($company->isActive) selected @endif value="1">Active</option>
-                                    <option @if (!$company->isActive) selected @endif value="0">inactive</option>
-                                </select>
-                            </div>
-
-
-                            {{-- <div class="form-group my-2">
-                                <label>plan</label>
-                                <select name="current_plan_id" id="" class="form-control">
-
-                                    @foreach ($plans as $plan)
-                                        @if ($plan->activate)
-                                            @if ($company->plan && $company->plan == $plan)
-                                                <option selected value="{{ $plan->id }}">{{ $plan->name_en }}
-                                                </option>
-                                            @else
-                                                <option value="{{ $plan->id }}">{{ $plan->name_en }}</option>
-                                            @endif
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div> --}}
-
-
 
                             <input hidden type="text" value="{{ $company->lat }}" name="lat" class="form-control"
                                 id="lat" placeholder="Latitude">
@@ -175,7 +164,7 @@
                                 id="long" placeholder="Longituide">
 
 
-                            <div class="my-4">
+                            <div class="my-1">
                                 <div id="map" style="height: 500px"></div>
                             </div>
 
@@ -184,7 +173,6 @@
                                 <textarea name="note" class="form-control" id="note" cols="30"
                                     rows="10">{{ $company->note }}</textarea>
                             </div>
-
 
 
                             <div class="form-group">
