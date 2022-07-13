@@ -18,9 +18,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                            <li class="breadcrumb-item active">Elements</li>
+                            <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('payment_methods.index')}}">Payment Methods</a></li>
+
+                            <li class="breadcrumb-item active">Update Payment Methods/li>
                         </ol>
                     </div>
                     <h4 class="page-title">Edit payment_method</h4>
@@ -37,16 +38,15 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">payment_method</h4>
 
-                        <form action="{{ route('payment_methods.update', $payment_method->id) }}" method="post">
+                        <form action="{{ route('payment_methods.update', $payment_method->id) }}" method="post" class="needs-validation" novalidate>
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
 
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Name</label>
                                 <input type="name" value="{{ $payment_method->name }}" name="name" class="form-control"
-                                    id="name" placeholder="Name">
+                                    id="name" placeholder="Name" required>
                             </div>
 
                             <div class="form-group shadow-textarea">
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-group">
-                                <select name="isActive" id="" class="form-control" style="width: 100%">
+                                <select name="isActive" id="" class="form-control" style="width: 100%" required>
                                      <option @if ($payment_method->isActive) selected @endif value="1">Active</option>
                                     <option @if (!$payment_method->isActive) selected @endif value="0">inactive</option>
                                 </select>

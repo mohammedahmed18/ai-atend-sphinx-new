@@ -11,17 +11,25 @@
     <div class="container-fluid">
 
         <!-- start page title -->
-        <div class="row">
-            <div class="col-12">
+        <div class="row align-item-center pt-3">
+            <div class="col-4">
+                <h4 class="page-title">Alerts</h4>
+            </div>
+            <div class="col-4">
+                
+                <a href="{{ route('alerts.create') }}" class="btn btn-primary mb-3">
+                    <i class="fa fa-plus mx-1"></i>
+                    <span>Create a new alert</span>
+                </a>
+            </div>
+            <div class="col-4">
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                            <li class="breadcrumb-item active">Datatables</li>
+                            <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('alerts.index')}}">Alerts</a></li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Datatables</h4>
                 </div>
             </div>
         </div>
@@ -36,12 +44,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="header-title">Alerts</h4>
-
-                        <a href="{{ route('alerts.create') }}" class="btn btn-primary mb-3">
-                            <i class="fa fa-plus mx-1"></i>
-                            <span>Create a new alert</span>
-                        </a>
+                        
 
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
@@ -54,7 +57,6 @@
                                     <th>Message Type</th>
                                     <th>last update By</th>
                                     <th>Companies</th>
-
                                 </tr>
                             </thead>
 

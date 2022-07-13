@@ -47,7 +47,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{ route('roles.store') }}" method="post" autocomplete="off">
+                        <form action="{{ route('roles.store') }}" method="post" autocomplete="off"  class="needs-validation" novalidate>
                             @csrf
                             <div class="form-group">
                                 <label for="name-input" class="col-form-label">Name <span

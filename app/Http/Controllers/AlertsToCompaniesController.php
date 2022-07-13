@@ -7,6 +7,7 @@ use App\AlertToCompany;
 use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AlertsToCompaniesController extends Controller
 {
@@ -23,13 +24,19 @@ class AlertsToCompaniesController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'alert_id' => 'required',
-            'companies' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required'
-        ]);
-
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'alert_id' => 'required',
+                'companies' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required'
+            ]
+        );
+        if ($validator->fails()) {
+            $err_msg = $validator->errors()->first();
+            return back()->with('error', $err_msg)->withInput();
+        }
 
         $companies = $request->companies;
         $alert_id = $request->alert_id;

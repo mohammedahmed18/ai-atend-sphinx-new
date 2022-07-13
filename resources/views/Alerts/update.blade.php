@@ -29,9 +29,9 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                            <li class="breadcrumb-item active">Elements</li>
+                            <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('alerts.index')}}">ALerts</a></li>
+                            <li class="breadcrumb-item active">Edit Alerts</li>
                         </ol>
                     </div>
                     <h4 class="page-title">Edit Alert</h4>
@@ -50,7 +50,7 @@
                     <div class="card-body">
                         <h4 class="header-title">alerts</h4>
 
-                        <form action="{{ route('alerts.update', $alert->id) }}" method="post">
+                        <form action="{{ route('alerts.update', $alert->id) }}" method="post" class="needs-validation" novalidate>
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
 
@@ -60,7 +60,7 @@
                                     <label for="name" class="col-form-label">message en <span
                                             class="text-danger">*</span></label>
                                     <input type="name" name="message_en" value="{{ $alert->message_en }}"
-                                        class="form-control" id="name" placeholder="message en...">
+                                        class="form-control" id="name" placeholder="message en..." required>
                                 </div>
 
 
@@ -68,14 +68,14 @@
                                     <label for="name" class="col-form-label">message ar <span
                                             class="text-danger">*</span></label>
                                     <input type="name" name="message_ar" value="{{ $alert->message_ar }}"
-                                        class="form-control" id="name" placeholder="message ar...">
+                                        class="form-control" id="name" placeholder="message ar..." required>
                                 </div>
                             </div>
 
                       
                             <div class="form-group">
                                 <label>alert type <span class="text-danger">*</span></label>
-                                <select name="type" class="form-control">
+                                <select name="type" class="form-control" required>
                                     <option @if ($alert->type == 'info') selected @endif value="1">info</option>
                                     <option @if ($alert->type == 'success') selected @endif value="2">success</option>
                                     <option @if ($alert->type == 'warning') selected @endif value="3">warning</option>
@@ -94,7 +94,7 @@
 
                             <div class="form-group">
                                 <label>Companies</label>
-                                <select id="selectize-maximum" name="companies[]">
+                                <select id="selectize-maximum" name="companies[]" required>
                                     <option disabled>select companies you want to send alert to</option>
                                     @foreach ($companies as $company)
                                         <option value="{{ $company->id }}">{{ $company->name_en }}

@@ -184,7 +184,7 @@
 
                 </div>
             </li>
-
+{{-- 
             <li class="dropdown notification-list topbar-dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
                     role="button" aria-haspopup="false" aria-expanded="false">
@@ -279,7 +279,7 @@
                     </a>
 
                 </div>
-            </li>
+            </li> --}}
 
             <li class="dropdown notification-list topbar-dropdown">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
@@ -413,11 +413,11 @@
             </li>
 
             <li class="dropdown dropdown-mega d-none d-xl-block">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
+                {{-- <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
                     role="button" aria-haspopup="false" aria-expanded="false">
                     Mega Menu
                     <i class="mdi mdi-chevron-down"></i>
-                </a>
+                </a> --}}
                 <div class="dropdown-menu dropdown-megamenu">
                     <div class="row">
                         <div class="col-sm-8">

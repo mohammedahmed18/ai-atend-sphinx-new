@@ -38,6 +38,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('alerts.index')}}">ALerts</a></li>
+                            <li class="breadcrumb-item active">Send Alert to Company</li>
+                        </ol>
+                    </div>
                     <h4 class="page-title">send alerts to companies</h4>
                 </div>
             </div>
@@ -54,7 +61,7 @@
                     <div class="card-body">
                         <form
                             onsubmit="return confirm('Are you sure you want to send the alert to the selected companies ?');"
-                            id="send-form" action="{{ route('alerts_to_companies.store') }}" method="post">
+                            id="send-form" action="{{ route('alerts_to_companies.store') }}" method="post" class="needs-validation" novalidate>
                             @csrf
 
                             <div class="form-group">
@@ -72,7 +79,7 @@
                                     <label for="name" class="col-form-label">start date <span
                                             class="text-danger">*</span></label>
                                     <input type="date" name="start_date" 
-                                        class="form-control" id="name" placeholder="start date...">
+                                        class="form-control" id="name" placeholder="start date..." required>
                                 </div>
 
 
@@ -80,7 +87,7 @@
                                     <label for="name" class="col-form-label">end date <span
                                             class="text-danger">*</span></label>
                                     <input type="date" name="end_date" 
-                                        class="form-control" id="name" placeholder="start date...">
+                                        class="form-control" id="name" placeholder="start date..." required>
                                 </div>
 
                             </div>
@@ -88,7 +95,7 @@
 
                             <div class="form-group">
                                 <label>Companies</label>
-                                <select id="selectize-maximum" name="companies[]">
+                                <select id="selectize-maximum" name="companies[]" required>
                                     <option disabled>select companies you want to send alert to</option>
                                     @foreach ($companies as $company)
                                         <option value="{{ $company->id }}">{{ $company->name_en }}</option>
