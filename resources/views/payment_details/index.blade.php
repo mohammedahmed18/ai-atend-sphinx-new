@@ -11,19 +11,23 @@
     <div class="container-fluid">
 
         <!-- start page title -->
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box">
+        <div class="row align-items-center pt-2">
+            <div class="col-4">
+                <h4 class="page-title">Payment Details</h4>
+            </div>
+            <div class="col-4">
+                <a href="{{route('payment_details.create')}}" class="btn btn-primary">Create New Payments Details</a>
+            </div>
+                <div class="page-title-box col-4">
                     <div class="page-title-right">
                         <ol class="m-0 breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                            <li class="breadcrumb-item active">Datatables</li>
+                            <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Payment Details</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Datatables</h4>
+                   
                 </div>
-            </div>
+
         </div>
         <!-- end page title -->
 
@@ -35,7 +39,6 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="header-title">Payment Methods</h4>
 
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>

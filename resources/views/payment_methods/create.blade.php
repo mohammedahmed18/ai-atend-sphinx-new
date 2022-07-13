@@ -29,9 +29,9 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                            <li class="breadcrumb-item active">Elements</li>
+                            <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('payment_methods.index')}}">Payment Methods</a></li>
+                            <li class="breadcrumb-item active">Create New Payment Methods</li>
                         </ol>
                     </div>
                     <h4 class="page-title">Payment Methods</h4>
@@ -48,13 +48,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Payment Methods</h4>
 
-                        <form action="{{ route('payment_methods.store') }}" method="post">
+                        <form action="{{ route('payment_methods.store') }}" method="post" class="needs-validation" novalidate>
                             @csrf
                             <div class="form-group">
-                                <label for="name" class="col-form-label">Name </label>
-                                <input type="name" name="name" class="form-control" id="name" placeholder="Name ">
+                                <label for="name" class="col-form-label">Name(*)</label>
+                                <input type="name" name="name" class="form-control" id="name" placeholder="Name " required>
                             </div>
 
                             <div class="form-group">
@@ -66,7 +65,7 @@
 
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Action</label>
-                                <select name="isActive" id="" class="form-control">
+                                <select name="isActive" id="" class="form-control" required>
                                     <option value="">Select Action</option>
                                     <option value="1">Active</option>
                                     <option value="0">Not Active</option>

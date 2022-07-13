@@ -131,7 +131,7 @@
                                                     <ul class="nav-second-level">
                                                         @permission('company_view')
                                                             <li>
-                                                                <a href="{{ route('companies.index') }}">Comapnies</a>
+                                                                <a href="{{ route('companies.index') }}">Companies</a>
                                                             </li>
                                                             @endpermission
                                                             @permission('company_add')
